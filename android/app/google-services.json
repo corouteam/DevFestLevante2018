@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "792402634639",
+    "firebase_url": "https://devfesttest-f5c73.firebaseio.com",
+    "project_id": "devfesttest-f5c73",
+    "storage_bucket": "devfesttest-f5c73.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792402634639:android:6e908c17fafbebfe",
+        "android_client_info": {
+          "package_name": "com.example.devfestlevante"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "792402634639-otr476vh4bboas35tn53b5urbirtkt6q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCh7k73iaLCii_8yP_hdO4cf-4sSGdBx2U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
