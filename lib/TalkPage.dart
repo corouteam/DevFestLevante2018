@@ -1,8 +1,8 @@
-import 'package:devfest_levante/Talk.dart';
+import 'package:devfest_levante/DevFestActivity.dart';
 import 'package:flutter/material.dart';
 
 class TalkPage extends StatelessWidget {
-  final Talk talk;
+  final DevFestActivity talk;
 
   TalkPage(this.talk);
 
@@ -12,6 +12,6 @@ class TalkPage extends StatelessWidget {
         appBar: AppBar(
           title: Text(talk.title),
         ),
-        body: Text(talk.abstract));
+        body: Text(talk.desc));
   }
 }
