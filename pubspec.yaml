@@ -8,7 +8,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.0
-  cloud_firestore: ^0.7.3     # new
+  cloud_firestore: ^0.7.3     # new, firestore library
+  intl: ^0.15.7               # new, datetime and localization library
 
 
 dev_dependencies:
