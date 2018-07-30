@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "792402634639-u2o5ks6phq89109j59j9quhdc6j9b9ql.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.devfestlevante",
+            "certificate_hash": "e010d8fdc13c2bf26f33562a3c01295d067086cc"
+          }
+        },
+        {
           "client_id": "792402634639-otr476vh4bboas35tn53b5urbirtkt6q.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,20 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "792402634639-otr476vh4bboas35tn53b5urbirtkt6q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "792402634639-quuubtc5pd011g9r57i4i68c3j8egpfl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.devfestLevante"
+              }
+            }
+          ]
         },
         "ads_service": {
           "status": 2

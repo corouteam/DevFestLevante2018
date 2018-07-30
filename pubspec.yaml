@@ -10,6 +10,8 @@ dependencies:
   cupertino_icons: ^0.1.0
   cloud_firestore: ^0.7.3     # new, firestore library
   intl: ^0.15.7               # new, datetime and localization library
+  google_sign_in: ^3.0.4      # new, required by Firebase Auth
+  firebase_auth: ^0.5.15      # new, Firebase Auth library
 
 
 dev_dependencies:
