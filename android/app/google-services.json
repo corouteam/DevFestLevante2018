@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "792402634639-7dtlkbp3avhhvf2cq0cv5gel057f268c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.devfestlevante",
+            "certificate_hash": "c45902a5c1629140e1a4b4beda6ab5b2fec5568a"
+          }
+        },
+        {
           "client_id": "792402634639-otr476vh4bboas35tn53b5urbirtkt6q.apps.googleusercontent.com",
           "client_type": 3
         }
