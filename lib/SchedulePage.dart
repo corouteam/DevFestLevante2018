@@ -97,7 +97,7 @@ class ActivityTile extends StatelessWidget {
         // Finally show bookmark button at end
 
         // TODO: Add a GestureDetector with stateful Icon bookmark widget
-        trailing: Icon(Icons.bookmark_border),
+        trailing: ActivityChipBuilder(activity.type),
 
         // On Click listener
         onTap: () => _openTalkPage(context, activity));
@@ -112,5 +112,30 @@ class ActivityTile extends StatelessWidget {
     final dateFormat = new DateFormat('HH:mm');
 
     return dateFormat.format(dateTime);
+  }
+}
+
+class ActivityChipBuilder extends StatelessWidget {
+  final String type;
+
+  const ActivityChipBuilder(this.type)
+
+  @override
+  Widget build(BuildContext context) {
+    if (type == "talk") {
+      return Chip(
+        backgroundColor: Colors.blueAccent,
+        label: Text("TALK",
+          style: TextStyle(color: Colors.white),),
+      );
+    } if (type == "workshop") {
+      return Chip(
+        backgroundColor: Colors.deepOrangeAccent,
+        label: Text("WORKSHOP",
+          style: TextStyle(color: Colors.white),),
+      );
+    } else {
+      return Text("");
+    }
   }
 }
