@@ -56,7 +56,16 @@ class HomeScaffoldState extends State<HomePageScaffold> {
     super.initState();
 
     pages = [
-      SchedulePage(),
+      TabBarView(children: [
+        SchedulePage(),
+        SchedulePage(),
+        SchedulePage(),
+        SchedulePage(),
+        SchedulePage(),
+        SchedulePage(),
+        SchedulePage(),
+        SchedulePage()
+      ]),
       Icon(Icons.favorite_border),
       Icon(Icons.directions_bike)
     ];
@@ -83,62 +92,83 @@ class HomeScaffoldState extends State<HomePageScaffold> {
               icon: Icon(Icons.directions_bike), title: Text("Info"))
         ]);
 
-    return Scaffold(
-        appBar: AppBar(
-          // Take user data
-          leading: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-              onTap: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text("Sign out?"),
-                        content: Text(
-                            "Tutte le sesioni salvate e le preferenze rimarranno comunque sincronizzate con il tuo account."),
-                        actions: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: FlatButton(
-                              child: Text("Non ora"),
-                              textColor: Colors.blueAccent,
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
+    return DefaultTabController(
+      length: 8,
+      child: Scaffold(
+          appBar: AppBar(
+            // Take user data
+            leading: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text("Sign out?"),
+                          content: Text(
+                              "Tutte le sesioni salvate e le preferenze rimarranno comunque sincronizzate con il tuo account."),
+                          actions: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: FlatButton(
+                                child: Text("Non ora"),
+                                textColor: Colors.blueAccent,
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: RaisedButton(
-                              child: Text("Sign out"),
-                              color: Colors.blueAccent,
-                              textColor: Colors.white,
-                              onPressed: () {
-                                FirebaseAuth.instance.signOut();
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            SplashScreenPage()));
-                              },
-                            ),
-                          )
-                        ],
-                      );
-                    });
-              },
-              child: Container(
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: new NetworkImage(user.photoUrl)))),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: RaisedButton(
+                                child: Text("Sign out"),
+                                color: Colors.blueAccent,
+                                textColor: Colors.white,
+                                onPressed: () {
+                                  FirebaseAuth.instance.signOut();
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              SplashScreenPage()));
+                                },
+                              ),
+                            )
+                          ],
+                        );
+                      });
+                },
+                child: Container(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: new NetworkImage(user.photoUrl)))),
+              ),
             ),
+            title: Text("DevFest Levante"),
+
+            // Return another Tab view if position is 0 (schedule)
+            // Return null if we are in favourites/info tab
+            bottom: (tabPosition == 0)
+                ? (TabBar(
+                    isScrollable: true,
+                    tabs: [
+                      Tab(child: Text("25 Ago")),
+                      Tab(child: Text("26 Ago")),
+                      Tab(child: Text("27 Ago")),
+                      Tab(child: Text("28 Ago")),
+                      Tab(child: Text("29 Ago")),
+                      Tab(child: Text("30 Ago")),
+                      Tab(child: Text("31 Ago")),
+                      Tab(child: Text("01 Sep")),
+                    ],
+                  ))
+                : null,
           ),
-          title: Text("DevFest Levante"),
-        ),
-        bottomNavigationBar: navBar,
-        body: currentPage);
+          bottomNavigationBar: navBar,
+          body: currentPage),
+    );
   }
 }

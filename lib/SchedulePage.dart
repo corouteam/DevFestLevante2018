@@ -118,21 +118,26 @@ class ActivityTile extends StatelessWidget {
 class ActivityChipBuilder extends StatelessWidget {
   final String type;
 
-  const ActivityChipBuilder(this.type)
+  const ActivityChipBuilder(this.type);
 
   @override
   Widget build(BuildContext context) {
     if (type == "talk") {
       return Chip(
         backgroundColor: Colors.blueAccent,
-        label: Text("TALK",
-          style: TextStyle(color: Colors.white),),
+        label: Text(
+          "TALK",
+          style: TextStyle(color: Colors.white),
+        ),
       );
-    } if (type == "workshop") {
+    }
+    if (type == "workshop") {
       return Chip(
         backgroundColor: Colors.deepOrangeAccent,
-        label: Text("WORKSHOP",
-          style: TextStyle(color: Colors.white),),
+        label: Text(
+          "WORKSHOP",
+          style: TextStyle(color: Colors.white),
+        ),
       );
     } else {
       return Text("");
