@@ -57,14 +57,14 @@ class HomeScaffoldState extends State<HomePageScaffold> {
 
     pages = [
       TabBarView(children: [
-        SchedulePage(),
-        SchedulePage(),
-        SchedulePage(),
-        SchedulePage(),
-        SchedulePage(),
-        SchedulePage(),
-        SchedulePage(),
-        SchedulePage()
+        SchedulePage(25),
+        SchedulePage(26),
+        SchedulePage(27),
+        SchedulePage(28),
+        SchedulePage(29),
+        SchedulePage(30),
+        SchedulePage(31),
+        SchedulePage(1)
       ]),
       Icon(Icons.favorite_border),
       Icon(Icons.directions_bike)

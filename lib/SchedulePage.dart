@@ -5,10 +5,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 
 class SchedulePage extends StatelessWidget {
+  final int day;
+
+  const SchedulePage(this.day);
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: Firestore.instance.collection('talks').snapshots(),
+        stream: Firestore.instance
+            .collection('talks')
+            .where("day", isEqualTo: day.toString())
+            .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) return const Text('Loading...');
 
