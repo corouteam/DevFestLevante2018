@@ -102,6 +102,30 @@ class ActivityTile extends StatelessWidget {
   }
 }
 
+class SpeakerChipWidget extends GenericScheduleWidget {
+  SpeakerChipWidget(DevFestActivity activity) : super(activity);
+
+  @override
+  Widget build(BuildContext context) {
+    // Only shows my avatar for now \o/
+    // Even if this is really cool, we need to join talk with speakers. Later.
+    // TODO query Firestore with speakerID
+
+    if (activity.type != "activity") {
+      return Chip(
+        backgroundColor: Colors.white,
+        label: Text("Paolo Rotolo"),
+        avatar: CircleAvatar(
+          backgroundImage: NetworkImage(
+              "https://scontent-mxp1-1.xx.fbcdn.net/v/t31.0-8/22770548_1581115798592916_7792073047443004744_o.jpg?_nc_cat=0&oh=43f97db7ead550d25118f0ff92fe3596&oe=5BC71863"),
+        ),
+      );
+    } else {
+      return Container();
+    }
+  }
+}
+
 class TitleWidget extends GenericScheduleWidget {
   TitleWidget(DevFestActivity activity) : super(activity);
 
@@ -131,28 +155,6 @@ class StartTimeWidget extends GenericScheduleWidget {
   Widget build(BuildContext context) {
     return Text(formatTime(activity.start),
         textScaleFactor: 1.2, style: TextStyle(color: Colors.blueAccent));
-  }
-}
-
-class SpeakerChipWidget extends GenericScheduleWidget {
-  SpeakerChipWidget(DevFestActivity activity) : super(activity);
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO query Firestore with speakerID
-
-    if (activity.type != "activity") {
-      return Chip(
-        backgroundColor: Colors.white,
-        label: Text("Paolo Rotolo"),
-        avatar: CircleAvatar(
-          backgroundImage: NetworkImage(
-              "https://scontent-mxp1-1.xx.fbcdn.net/v/t31.0-8/22770548_1581115798592916_7792073047443004744_o.jpg?_nc_cat=0&oh=43f97db7ead550d25118f0ff92fe3596&oe=5BC71863"),
-        ),
-      );
-    } else {
-      return Container();
-    }
   }
 }
 
