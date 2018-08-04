@@ -67,30 +67,33 @@ class ActivityTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(child: StartTimeWidget(activity)),
-                ActivityChipWidget(activity)
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                TitleWidget(activity),
-                DescriptionWidget(activity)
-              ],
-            ),
-            SpeakerChipWidget(activity)
-          ],
+      child: InkWell(
+        onTap: () => _openTalkPage(context, activity),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(child: StartTimeWidget(activity)),
+                  ActivityChipWidget(activity)
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  TitleWidget(activity),
+                  DescriptionWidget(activity)
+                ],
+              ),
+              SpeakerChipWidget(activity)
+            ],
+          ),
         ),
       ),
     );
