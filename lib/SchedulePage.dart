@@ -124,10 +124,8 @@ class DescriptionWidget extends GenericScheduleWidget {
   }
 }
 
-class StartTimeWidget extends StatelessWidget {
-  final DevFestActivity activity;
-
-  StartTimeWidget(this.activity);
+class StartTimeWidget extends GenericScheduleWidget {
+  StartTimeWidget(DevFestActivity activity) : super(activity);
 
   @override
   Widget build(BuildContext context) {
