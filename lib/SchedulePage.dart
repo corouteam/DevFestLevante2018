@@ -102,10 +102,8 @@ class ActivityTile extends StatelessWidget {
   }
 }
 
-class TitleWidget extends StatelessWidget {
-  DevFestActivity activity;
-
-  TitleWidget(this.activity);
+class TitleWidget extends GenericScheduleWidget {
+  TitleWidget(DevFestActivity activity) : super(activity);
 
   @override
   Widget build(BuildContext context) {
@@ -117,10 +115,8 @@ class TitleWidget extends StatelessWidget {
   }
 }
 
-class DescriptionWidget extends StatelessWidget {
-  DevFestActivity activity;
-
-  DescriptionWidget(this.activity);
+class DescriptionWidget extends GenericScheduleWidget {
+  DescriptionWidget(DevFestActivity activity) : super(activity);
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +125,7 @@ class DescriptionWidget extends StatelessWidget {
 }
 
 class StartTimeWidget extends StatelessWidget {
-  DevFestActivity activity;
+  final DevFestActivity activity;
 
   StartTimeWidget(this.activity);
 
@@ -140,10 +136,8 @@ class StartTimeWidget extends StatelessWidget {
   }
 }
 
-class SpeakerChipWidget extends StatelessWidget {
-  final DevFestActivity activity;
-
-  const SpeakerChipWidget(this.activity);
+class SpeakerChipWidget extends GenericScheduleWidget {
+  SpeakerChipWidget(DevFestActivity activity) : super(activity);
 
   @override
   Widget build(BuildContext context) {
@@ -164,10 +158,8 @@ class SpeakerChipWidget extends StatelessWidget {
   }
 }
 
-class ActivityChipWidget extends StatelessWidget {
-  final DevFestActivity activity;
-
-  const ActivityChipWidget(this.activity);
+class ActivityChipWidget extends GenericScheduleWidget {
+  ActivityChipWidget(DevFestActivity activity) : super(activity);
 
   @override
   Widget build(BuildContext context) {
@@ -198,6 +190,11 @@ class ActivityChipWidget extends StatelessWidget {
       return Text("");
     }
   }
+}
+
+abstract class GenericScheduleWidget extends StatelessWidget {
+  final DevFestActivity activity;
+  const GenericScheduleWidget(this.activity);
 }
 
 String formatTime(DateTime dateTime) {
