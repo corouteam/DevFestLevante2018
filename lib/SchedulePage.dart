@@ -1,7 +1,7 @@
+import 'package:devfest_levante/ActivitiesRepository.dart';
 import 'package:devfest_levante/DevFestActivity.dart';
 import 'package:devfest_levante/TalkPage.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 
 class SchedulePage extends StatelessWidget {
@@ -12,50 +12,17 @@ class SchedulePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: Firestore.instance
-            .collection('talks')
-            .where("day", isEqualTo: day.toString())
-            .snapshots(),
+        stream: ActivitiesRepository.getActivitiesByDay(day),
         builder: (context, snapshot) {
           if (!snapshot.hasData) return const Text('Loading...');
-
-          List<DevFestActivity> activities = [];
-
-          for (int i = 0; i < snapshot.data.documents.length; i++) {
-            DocumentSnapshot document = snapshot.data.documents[i];
-
-            if (document["type"] == "generic") {
-              // Build new talk
-              activities.add(DevFestActivity(
-                  document["id"],
-                  document["type"],
-                  document["title"],
-                  document["desc"],
-                  document["day"],
-                  document["start"],
-                  document["end"]));
-            } else {
-              // Build new generic activity
-              activities.add(DevFestActivity(
-                  document["id"],
-                  document["type"],
-                  document["title"],
-                  document["desc"],
-                  document["day"],
-                  document["start"],
-                  document["end"]));
-
-              // TODO: Add speakers later here
-            }
-          }
 
           return Container(
             decoration: BoxDecoration(color: Colors.white),
             child: new ListView.builder(
-              itemCount: snapshot.data.documents.length,
+              itemCount: snapshot.data.length,
               padding: const EdgeInsets.only(top: 10.0),
               itemBuilder: (context, index) =>
-                  _buildListItem(context, activities[index]),
+                  _buildListItem(context, snapshot.data[index]),
             ),
           );
         });
