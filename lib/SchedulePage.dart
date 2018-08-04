@@ -37,114 +37,171 @@ class ActivityTile extends StatelessWidget {
   const ActivityTile(this.activity);
 
   final DevFestActivity activity;
+/*
+
+  Elements that can be generated:
+
+  TitleWidget(activity)
+  Show activity title;
+  Argument must not be null;
+
+  DescriptionWidget(activity)
+  Show activity description. Returns an empty container if description is null;
+
+
+  StartTimeWidget(activity)
+  Show activity's start time.
+  Argument must not be null;
+
+  SpeakerChipWidget(activity)
+  Show a chip with Speaker's avatar and name.
+  Returns an empty container if activity doesn't have a speaker (generic activity);
+
+  ActivityChipWidget(activity)
+  Show a chip with Activity type (Talk|Workshop)
+  Returns an empty container in case of generic activity;
+
+
+*/
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-
-        // Show TIME at start
-        leading: Column(
-          // Allign all at start
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
-          // Will have 2 child (start time, end time),
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              formatTime(activity.start),
-              style: TextStyle(color: Colors.indigoAccent),
-              textScaleFactor: 1.5,
+            Row(
+              children: <Widget>[
+                Expanded(child: StartTimeWidget(activity)),
+                ActivityChipWidget(activity)
+              ],
             ),
-            Text(formatTime(activity.end))
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                TitleWidget(activity),
+                DescriptionWidget(activity)
+              ],
+            ),
+            SpeakerChipWidget(activity)
           ],
         ),
-
-        // Show activity Title
-        title: Text(
-          activity.title,
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-
-        // Show activity description
-        // Check if null first, some activities doesn't have description
-        // For example talks have abstracts and don't feature a description
-        subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              // If we have no description, return just an empty view
-              // TALKs and WORKSHOP have NO description! They will have speaker chip instead
-              ((activity.desc != null) ? Text(activity.desc) : Container()),
-
-              // Append speaker chip below if not generic activity
-              SpeakerChipBuilder("talk")
-            ]),
-
-        // Finally show bookmark button at end
-
-        // TODO: Add a GestureDetector with stateful Icon bookmark widget
-        trailing: ActivityChipBuilder(activity.type),
-
-        // On Click listener
-        onTap: () => _openTalkPage(context, activity));
+      ),
+    );
   }
 
   _openTalkPage(BuildContext context, DevFestActivity talk) {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => TalkPage(talk)));
   }
-
-  String formatTime(DateTime dateTime) {
-    final dateFormat = new DateFormat('HH:mm');
-
-    return dateFormat.format(dateTime);
-  }
 }
 
-class SpeakerChipBuilder extends StatelessWidget {
-  final String speakerId;
+class TitleWidget extends StatelessWidget {
+  DevFestActivity activity;
 
-  const SpeakerChipBuilder(this.speakerId);
+  TitleWidget(this.activity);
 
   @override
   Widget build(BuildContext context) {
-    // TODO query Firestore with speakerID
-    return Chip(
-      backgroundColor: Colors.white,
-      label: Text("Paolo Rotolo"),
-      avatar: CircleAvatar(
-        backgroundImage: NetworkImage(
-            "https://scontent-mxp1-1.xx.fbcdn.net/v/t31.0-8/22770548_1581115798592916_7792073047443004744_o.jpg?_nc_cat=0&oh=43f97db7ead550d25118f0ff92fe3596&oe=5BC71863"),
-      ),
+    return Text(
+      activity.title,
+      textScaleFactor: 1.5,
+      style: TextStyle(fontWeight: FontWeight.bold),
     );
   }
 }
 
-class ActivityChipBuilder extends StatelessWidget {
-  final String type;
+class DescriptionWidget extends StatelessWidget {
+  DevFestActivity activity;
 
-  const ActivityChipBuilder(this.type);
+  DescriptionWidget(this.activity);
 
   @override
   Widget build(BuildContext context) {
-    if (type == "talk") {
+    return ((activity.desc != null) ? Text(activity.desc) : Container());
+  }
+}
+
+class StartTimeWidget extends StatelessWidget {
+  DevFestActivity activity;
+
+  StartTimeWidget(this.activity);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(formatTime(activity.start),
+        textScaleFactor: 1.2, style: TextStyle(color: Colors.blueAccent));
+  }
+}
+
+class SpeakerChipWidget extends StatelessWidget {
+  final DevFestActivity activity;
+
+  const SpeakerChipWidget(this.activity);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO query Firestore with speakerID
+
+    if (activity.type != "activity") {
       return Chip(
-        backgroundColor: Colors.blueAccent,
-        label: Text(
-          "TALK",
-          style: TextStyle(color: Colors.white),
+        backgroundColor: Colors.white,
+        label: Text("Paolo Rotolo"),
+        avatar: CircleAvatar(
+          backgroundImage: NetworkImage(
+              "https://scontent-mxp1-1.xx.fbcdn.net/v/t31.0-8/22770548_1581115798592916_7792073047443004744_o.jpg?_nc_cat=0&oh=43f97db7ead550d25118f0ff92fe3596&oe=5BC71863"),
+        ),
+      );
+    } else {
+      return Container();
+    }
+  }
+}
+
+class ActivityChipWidget extends StatelessWidget {
+  final DevFestActivity activity;
+
+  const ActivityChipWidget(this.activity);
+
+  @override
+  Widget build(BuildContext context) {
+    if (activity.type == "talk") {
+      return Transform(
+        transform: new Matrix4.identity()..scale(0.8),
+        child: Chip(
+          backgroundColor: Colors.blueAccent,
+          label: Text(
+            "TALK",
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       );
     }
-    if (type == "workshop") {
-      return Chip(
-        backgroundColor: Colors.deepOrangeAccent,
-        label: Text(
-          "WORKSHOP",
-          style: TextStyle(color: Colors.white),
+    if (activity.type == "workshop") {
+      return Transform(
+        transform: new Matrix4.identity()..scale(0.8),
+        child: Chip(
+          backgroundColor: Colors.deepOrangeAccent,
+          label: Text(
+            "WORKSHOP",
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       );
     } else {
       return Text("");
     }
   }
+}
+
+String formatTime(DateTime dateTime) {
+  final dateFormat = new DateFormat('HH:mm');
+
+  return dateFormat.format(dateTime);
 }
