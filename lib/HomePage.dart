@@ -1,9 +1,11 @@
 import 'package:devfest_levante/SchedulePage.dart';
 import 'package:devfest_levante/SplashScreenPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -35,6 +37,7 @@ class HomePage extends StatelessWidget {
 }
 
 class HomePageScaffold extends StatefulWidget {
+
   final FirebaseUser user;
 
   const HomePageScaffold(this.user);
@@ -48,6 +51,7 @@ class HomeScaffoldState extends State<HomePageScaffold> {
   int tabPosition = 0;
   var currentPage;
   List<Widget> pages;
+  FirebaseMessaging firebaseMessaging = new FirebaseMessaging();
 
   HomeScaffoldState(this.user);
 
@@ -71,6 +75,39 @@ class HomeScaffoldState extends State<HomePageScaffold> {
     ];
 
     currentPage = pages[0];
+
+    firebaseMessaging.configure(
+      onLaunch: (Map<String, dynamic> msg){
+        print("on Launch called");
+      },
+      onResume: (Map<String, dynamic> msg){
+        print("onResume called");
+      },
+      onMessage: (Map<String, dynamic> msg){
+        print("onMessage called");
+      }
+    );
+    firebaseMessaging.requestNotificationPermissions(
+      const IosNotificationSettings(
+        sound: true,
+        alert: true,
+        badge: true
+      )
+    );
+    firebaseMessaging.onIosSettingsRegistered.listen((IosNotificationSettings){
+      print('IOS Settings Registed');
+    });
+    firebaseMessaging.getToken().then((token){
+      getToken(token);
+    });
+  }
+  // Paolo qui
+
+  getToken(String token){
+    print("TOKEN   "+token);
+    setState(() {
+
+    });
   }
 
   @override

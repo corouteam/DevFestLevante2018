@@ -12,6 +12,7 @@ dependencies:
   intl: ^0.15.7               # new, datetime and localization library
   google_sign_in: ^3.0.4      # new, required by Firebase Auth
   firebase_auth: ^0.5.15      # new, Firebase Auth library
+  firebase_messaging:         # new, Firebase Push Notification library
 
 
 dev_dependencies:
