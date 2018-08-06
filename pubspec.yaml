@@ -35,6 +35,7 @@ flutter:
   assets:
    - assets/heroes.png
    - assets/heroes_orange.png
+   - assets/heroes_orange_big.png
   #  - images/a_dot_ham.jpeg
 
 

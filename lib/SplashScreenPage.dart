@@ -4,6 +4,7 @@ import 'package:devfest_levante/HomePage.dart';
 import 'package:devfest_levante/SchedulePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class SplashScreenPage extends StatefulWidget {
@@ -55,13 +56,14 @@ class SplashScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return Center(
       child: new Column(
         children: <Widget>[
-        SizedBox(height: 52.0,),
+        SizedBox(height: 36.0,),
         new Padding(
-          padding: const EdgeInsets.all(32.0),
-          child: Image(image: AssetImage('assets/heroes_orange.png'),),
+          padding: const EdgeInsets.all(16.0),
+          child: Image(image: AssetImage('assets/heroes_orange_big.png'),),
         ),
           SizedBox(height: 24.0,),
           RaisedButton(
