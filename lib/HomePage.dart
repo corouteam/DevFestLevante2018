@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values)
+    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     return new MaterialApp(
         theme: new ThemeData(
           primarySwatch: Colors.blue,
