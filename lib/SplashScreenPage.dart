@@ -43,9 +43,6 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("DevFest levante"),
-        ),
         body: SplashScreenWidget(),
       ),
     );
@@ -59,13 +56,23 @@ class SplashScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: RaisedButton(
-          color: Colors.blueAccent,
-          textColor: Colors.white,
-          onPressed: () {
-            _handleSignIn(context);
-          },
-          child: Text("Login with Google")),
+      child: new Column(
+        children: <Widget>[
+        SizedBox(height: 52.0,),
+        new Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Image(image: AssetImage('assets/heroes_orange.png'),),
+        ),
+          SizedBox(height: 24.0,),
+          RaisedButton(
+              color: Colors.blueAccent,
+              textColor: Colors.white,
+              onPressed: () {
+                _handleSignIn(context);
+              },
+              child: Text("Login with Google")),
+        ],
+      ),
     );
   }
 
