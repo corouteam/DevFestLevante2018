@@ -1,3 +1,4 @@
+import 'package:devfest_levante/InfoPage.dart';
 import 'package:devfest_levante/SchedulePage.dart';
 import 'package:devfest_levante/SplashScreenPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -71,7 +72,7 @@ class HomeScaffoldState extends State<HomePageScaffold> {
         SchedulePage(1)
       ]),
       Icon(Icons.favorite_border),
-      Icon(Icons.directions_bike)
+      InfoPage()
     ];
 
     currentPage = pages[0];
@@ -114,8 +115,7 @@ class HomeScaffoldState extends State<HomePageScaffold> {
               icon: Icon(Icons.schedule), title: Text("Schedule")),
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite), title: Text("Favourites")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.directions_bike), title: Text("Info"))
+          BottomNavigationBarItem(icon: Icon(Icons.info), title: Text("Info"))
         ]);
 
     return DefaultTabController(
@@ -177,24 +177,37 @@ class HomeScaffoldState extends State<HomePageScaffold> {
 
             // Return another Tab view if position is 0 (schedule)
             // Return null if we are in favourites/info tab
-            bottom: (tabPosition == 0)
-                ? (TabBar(
-                    isScrollable: true,
-                    tabs: [
-                      Tab(child: Text("25 Ago")),
-                      Tab(child: Text("26 Ago")),
-                      Tab(child: Text("27 Ago")),
-                      Tab(child: Text("28 Ago")),
-                      Tab(child: Text("29 Ago")),
-                      Tab(child: Text("30 Ago")),
-                      Tab(child: Text("31 Ago")),
-                      Tab(child: Text("01 Sep")),
-                    ],
-                  ))
-                : null,
+            bottom: _buildTabView(tabPosition),
           ),
           bottomNavigationBar: navBar,
           body: currentPage),
     );
+  }
+
+  _buildTabView(int tabPosition) {
+    if (tabPosition == 0) {
+      // SCHEDULE
+      return TabBar(
+        isScrollable: true,
+        tabs: [
+          Tab(child: Text("25 Ago")),
+          Tab(child: Text("26 Ago")),
+          Tab(child: Text("27 Ago")),
+          Tab(child: Text("28 Ago")),
+          Tab(child: Text("29 Ago")),
+          Tab(child: Text("30 Ago")),
+          Tab(child: Text("31 Ago")),
+          Tab(child: Text("01 Sep")),
+        ],
+      );
+    } else if (tabPosition == 2) {
+      // INFO
+      return TabBar(
+        isScrollable: true,
+        tabs: [
+          Tab(child: Text("FAQ")),
+        ],
+      );
+    }
   }
 }
