@@ -26,8 +26,8 @@ class ActivitiesRepository {
       DocumentSnapshot document = snapshot.documents[i];
 
       if (document["type"] == "generic") {
-        // Build new talk
-        activities.add(DevFestActivity(
+        // Build new generic
+        activities.add(DevFestActivity.generic(
             document["id"],
             document["type"],
             document["title"],
@@ -36,7 +36,7 @@ class ActivitiesRepository {
             document["start"],
             document["end"]));
       } else {
-        // Build new generic activity
+        // Build new talk/workshop
         activities.add(DevFestActivity(
             document["id"],
             document["type"],
@@ -44,9 +44,8 @@ class ActivitiesRepository {
             document["desc"],
             document["day"],
             document["start"],
-            document["end"]));
-
-        // TODO: Add speakers later here
+            document["end"],
+            document["speakers"]));
       }
     }
 

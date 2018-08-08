@@ -1,5 +1,7 @@
 import 'package:devfest_levante/ActivitiesRepository.dart';
 import 'package:devfest_levante/DevFestActivity.dart';
+import 'package:devfest_levante/DevFestSpeaker.dart';
+import 'package:devfest_levante/SpeakersRepository.dart';
 import 'package:devfest_levante/TalkPage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -115,13 +117,18 @@ class SpeakerChipWidget extends GenericScheduleWidget {
     // TODO query Firestore with speakerID
 
     if (activity.type != "activity") {
-      return Chip(
-        backgroundColor: Colors.white,
-        label: Text("Paolo Rotolo"),
-        avatar: CircleAvatar(
-          backgroundImage: NetworkImage(
-              "https://scontent-mxp1-1.xx.fbcdn.net/v/t31.0-8/22770548_1581115798592916_7792073047443004744_o.jpg?_nc_cat=0&oh=43f97db7ead550d25118f0ff92fe3596&oe=5BC71863"),
-        ),
+      return StreamBuilder(
+        stream: SpeakersRepository.getSpeaker(activity.speakers),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          DevFestSpeaker speaker = snapshot.data;
+          if (!snapshot.hasData) return Container();
+
+          return Chip(
+            backgroundColor: Colors.white,
+            label: Text(speaker.name),
+            avatar: CircleAvatar(backgroundImage: NetworkImage(speaker.pic)),
+          );
+        },
       );
     } else {
       return Container();

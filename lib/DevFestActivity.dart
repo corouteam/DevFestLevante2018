@@ -6,7 +6,11 @@ class DevFestActivity {
   final DateTime start;
   final DateTime end;
   final String type;
+  final String speakers;
+
+  DevFestActivity.generic(this.id, this.type, this.title, this.desc, this.day,
+      this.start, this.end);
 
   DevFestActivity(this.id, this.type, this.title, this.desc, this.day,
-      this.start, this.end);
+      this.start, this.end, this.speakers);
 }
