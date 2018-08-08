@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class HomePage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
@@ -31,7 +30,7 @@ class HomePage extends StatelessWidget {
             } else {
               // Firebase has not returned data yet. Show loading screen
               // TODO: Maybe replace this with a loading dialog
-              return Text('Loading...');
+              return Scaffold(body: Center(child: Text('Loading...')));
             }
           },
         ));
@@ -39,7 +38,6 @@ class HomePage extends StatelessWidget {
 }
 
 class HomePageScaffold extends StatefulWidget {
-
   final FirebaseUser user;
 
   const HomePageScaffold(this.user);
@@ -78,38 +76,27 @@ class HomeScaffoldState extends State<HomePageScaffold> {
 
     currentPage = pages[0];
 
-    firebaseMessaging.configure(
-      onLaunch: (Map<String, dynamic> msg){
-        print("on Launch called");
-      },
-      onResume: (Map<String, dynamic> msg){
-        print("onResume called");
-      },
-      onMessage: (Map<String, dynamic> msg){
-        print("onMessage called");
-      }
-    );
+    firebaseMessaging.configure(onLaunch: (Map<String, dynamic> msg) {
+      print("on Launch called");
+    }, onResume: (Map<String, dynamic> msg) {
+      print("onResume called");
+    }, onMessage: (Map<String, dynamic> msg) {
+      print("onMessage called");
+    });
     firebaseMessaging.requestNotificationPermissions(
-      const IosNotificationSettings(
-        sound: true,
-        alert: true,
-        badge: true
-      )
-    );
-    firebaseMessaging.onIosSettingsRegistered.listen((IosNotificationSettings){
+        const IosNotificationSettings(sound: true, alert: true, badge: true));
+    firebaseMessaging.onIosSettingsRegistered.listen((IosNotificationSettings) {
       print('IOS Settings Registed');
     });
-    firebaseMessaging.getToken().then((token){
+    firebaseMessaging.getToken().then((token) {
       getToken(token);
     });
   }
   // Paolo qui
 
-  getToken(String token){
-    print("TOKEN   "+token);
-    setState(() {
-
-    });
+  getToken(String token) {
+    print("TOKEN   " + token);
+    setState(() {});
   }
 
   @override

@@ -16,7 +16,7 @@ class SchedulePage extends StatelessWidget {
     return StreamBuilder(
         stream: ActivitiesRepository.getActivitiesByDay(day),
         builder: (context, snapshot) {
-          if (!snapshot.hasData) return const Text('Loading...');
+          if (!snapshot.hasData) return Container();
 
           return Container(
             decoration: BoxDecoration(color: Colors.white),
