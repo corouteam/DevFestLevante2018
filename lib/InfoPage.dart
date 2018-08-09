@@ -1,4 +1,5 @@
 import 'package:devfest_levante/DevFestFaq.dart';
+import 'package:devfest_levante/DevFestTabTextTheme.dart';
 import 'package:devfest_levante/FaqRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -6,7 +7,20 @@ import 'package:flutter/widgets.dart';
 class InfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return TabBarView(children: <Widget>[FaqPage()]);
+    return DefaultTabController(
+      length: 1,
+      child: Column(
+        children: <Widget>[
+          TabBar(
+            isScrollable: true,
+            tabs: [
+              Tab(child: DevFestTabTextTheme("FAQ")),
+            ],
+          ),
+          Expanded(child: TabBarView(children: <Widget>[FaqPage()])),
+        ],
+      ),
+    );
   }
 }
 

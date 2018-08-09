@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:devfest_levante/HomePage.dart';
-import 'package:devfest_levante/SchedulePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -60,12 +59,18 @@ class SplashScreenWidget extends StatelessWidget {
     return Center(
       child: new Column(
         children: <Widget>[
-        SizedBox(height: 36.0,),
-        new Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Image(image: AssetImage('assets/heroes_orange_big.png'),),
-        ),
-          SizedBox(height: 24.0,),
+          SizedBox(
+            height: 36.0,
+          ),
+          new Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Image(
+              image: AssetImage('assets/heroes_orange_big.png'),
+            ),
+          ),
+          SizedBox(
+            height: 24.0,
+          ),
           RaisedButton(
               color: Colors.blueAccent,
               textColor: Colors.white,
