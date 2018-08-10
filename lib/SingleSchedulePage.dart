@@ -68,34 +68,40 @@ class ActivityTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: InkWell(
-        onTap: () => _openTalkPage(context, activity),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Expanded(child: StartTimeWidget(activity)),
-                  ActivityChipWidget(activity)
-                ],
+    return InkWell(
+      onTap: () => _openTalkPage(context, activity),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                StartTimeWidget(activity),
+                ActivityChipWidget(activity),
+              ],
+            ),
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    TitleWidget(activity),
+                    DescriptionWidget(activity),
+                    SpeakerChipWidget(activity),
+                  ],
+                ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  TitleWidget(activity),
-                  DescriptionWidget(activity)
-                ],
-              ),
-              SpeakerChipWidget(activity)
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -164,7 +170,7 @@ class StartTimeWidget extends GenericScheduleWidget {
   @override
   Widget build(BuildContext context) {
     return Text(formatTime(activity.start),
-        textScaleFactor: 1.2, style: TextStyle(color: Colors.blueAccent));
+        textScaleFactor: 1.7, style: TextStyle(color: Colors.blueAccent));
   }
 }
 
@@ -174,31 +180,45 @@ class ActivityChipWidget extends GenericScheduleWidget {
   @override
   Widget build(BuildContext context) {
     if (activity.type == "talk") {
-      return Transform(
-        transform: new Matrix4.identity()..scale(0.8),
-        child: Chip(
-          backgroundColor: Colors.blueAccent,
-          label: Text(
-            "TALK",
-            style: TextStyle(color: Colors.white),
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2.0),
+            child: Text(
+              "TALK",
+              style: TextStyle(color: hexToColor("#676767")),
+              textScaleFactor: 0.8,
+            ),
           ),
-        ),
+        ],
       );
     }
     if (activity.type == "workshop") {
-      return Transform(
-        transform: new Matrix4.identity()..scale(0.8),
-        child: Chip(
-          backgroundColor: Colors.deepOrangeAccent,
-          label: Text(
-            "WORKSHOP",
-            style: TextStyle(color: Colors.white),
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2.0),
+            child: Text(
+              "WORKSHOP",
+              style: TextStyle(color: hexToColor("#676767")),
+              textScaleFactor: 0.7,
+            ),
           ),
-        ),
+        ],
       );
     } else {
       return Text("");
     }
+  }
+
+  Color hexToColor(String code) {
+    return new Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
   }
 }
 
