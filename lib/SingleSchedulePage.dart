@@ -149,7 +149,7 @@ class TitleWidget extends GenericScheduleWidget {
   Widget build(BuildContext context) {
     return Text(
       activity.title,
-      textScaleFactor: 1.5,
+      textScaleFactor: 1.4,
       style: TextStyle(fontWeight: FontWeight.bold),
     );
   }
@@ -169,8 +169,17 @@ class StartTimeWidget extends GenericScheduleWidget {
 
   @override
   Widget build(BuildContext context) {
+    var color = hexToColor("#676767");
+
+    if (activity.type == "talk") {
+      color = Colors.blueAccent;
+    } else if (activity.type == "workshop") {
+      color = Colors.deepOrangeAccent;
+    }
+
     return Text(formatTime(activity.start),
-        textScaleFactor: 1.7, style: TextStyle(color: Colors.blueAccent));
+        textScaleFactor: 1.8,
+        style: TextStyle(color: color, fontWeight: FontWeight.w300));
   }
 }
 
@@ -189,7 +198,8 @@ class ActivityChipWidget extends GenericScheduleWidget {
             padding: const EdgeInsets.symmetric(horizontal: 2.0),
             child: Text(
               "TALK",
-              style: TextStyle(color: hexToColor("#676767")),
+              style: TextStyle(
+                  color: hexToColor("#676767"), fontWeight: FontWeight.w300),
               textScaleFactor: 0.8,
             ),
           ),
@@ -206,7 +216,8 @@ class ActivityChipWidget extends GenericScheduleWidget {
             padding: const EdgeInsets.symmetric(horizontal: 2.0),
             child: Text(
               "WORKSHOP",
-              style: TextStyle(color: hexToColor("#676767")),
+              style: TextStyle(
+                  color: hexToColor("#676767"), fontWeight: FontWeight.w300),
               textScaleFactor: 0.7,
             ),
           ),
@@ -215,10 +226,6 @@ class ActivityChipWidget extends GenericScheduleWidget {
     } else {
       return Text("");
     }
-  }
-
-  Color hexToColor(String code) {
-    return new Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
   }
 }
 
@@ -231,4 +238,8 @@ String formatTime(DateTime dateTime) {
   final dateFormat = new DateFormat('HH:mm');
 
   return dateFormat.format(dateTime);
+}
+
+Color hexToColor(String code) {
+  return new Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
 }

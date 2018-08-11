@@ -13,9 +13,9 @@ class HomePage extends StatelessWidget {
 
     return new MaterialApp(
         theme: new ThemeData(
-          brightness: Brightness.light,
-          primarySwatch: Colors.blue,
-        ),
+            brightness: Brightness.light,
+            primarySwatch: Colors.blue,
+            fontFamily: "Lato"),
 
         // Before showing the Scaffold, we need the profile image for the appbar
         // So we build a Future with Firebase user request as future parameter
