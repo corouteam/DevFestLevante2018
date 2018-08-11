@@ -82,6 +82,7 @@ class HomeScaffoldState extends State<HomePageScaffold> {
       getToken(token);
     });
   }
+
   // Paolo qui
 
   getToken(String token) {
@@ -101,10 +102,23 @@ class HomeScaffoldState extends State<HomePageScaffold> {
         },
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(Icons.schedule), title: Text("Schedule")),
+              icon: Icon(Icons.schedule),
+              title: Text(
+                "Schedule",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), title: Text("Favourites")),
-          BottomNavigationBarItem(icon: Icon(Icons.info), title: Text("Info"))
+              icon: Icon(Icons.favorite),
+              title: Text(
+                "Favourites",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.info),
+              title: Text(
+                "Info",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ))
         ]);
 
     return Scaffold(
@@ -169,7 +183,15 @@ class HomeScaffoldState extends State<HomePageScaffold> {
             style: TextStyle(color: Colors.black),
           ),
         ),
-        bottomNavigationBar: navBar,
+        bottomNavigationBar: new Theme(
+            data: Theme.of(context).copyWith(
+                canvasColor: Colors.blueAccent,
+                primaryColor: Colors.white,
+                textTheme: Theme
+                    .of(context)
+                    .textTheme
+                    .copyWith(caption: new TextStyle(color: Colors.white70))),
+            child: navBar),
         body: currentPage);
   }
 }
