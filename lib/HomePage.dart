@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_statusbar_manager/flutter_statusbar_manager.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -61,6 +62,8 @@ class HomeScaffoldState extends State<HomePageScaffold> {
   @override
   void initState() {
     super.initState();
+
+    initActionBar();
 
     pages = [SchedulePage(), Icon(Icons.favorite_border), InfoPage()];
 
@@ -193,5 +196,10 @@ class HomeScaffoldState extends State<HomePageScaffold> {
                     .copyWith(caption: new TextStyle(color: Colors.white70))),
             child: navBar),
         body: currentPage);
+  }
+
+  void initActionBar() async {
+    await FlutterStatusbarManager.setTranslucent(false);
+    await FlutterStatusbarManager.setStyle(StatusBarStyle.DARK_CONTENT);
   }
 }
