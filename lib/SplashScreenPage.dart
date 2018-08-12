@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:devfest_levante/DevFestUser.dart';
 import 'package:devfest_levante/HomePage.dart';
+import 'package:devfest_levante/UserRepository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -87,18 +89,23 @@ class SplashScreenWidget extends StatelessWidget {
   // to listen for only ONE event.
   // Stream will leave an open connection instead (ex for realtime database).
   // TODO: Maybe consider to use Future when downloading talks too, since they won't change often
-  Future<FirebaseUser> _handleSignIn(context) async {
+  _handleSignIn(context) async {
     GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
     FirebaseUser user = await _auth.signInWithGoogle(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
 
-    // Login done, restart SplashScreenPage
-    print("signed in " + user.displayName);
+    // Login done, create user in Firestore
+
+/*    UserRepository repo = UserRepository(user.uid);
+    var devFestUser = DevFestUser();
+    devFestUser.userId = user.uid;
+    await repo.createNewUser(devFestUser);*/
+
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => HomePage()));
-    return user;
   }
 }
