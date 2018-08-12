@@ -17,21 +17,59 @@ class UserRepository {
   }
 
   addBookmark(String activityId) {
-    getUser().listen((user) => _updateBookmarks(user, activityId));
+    // Create subscription reference, so we can unsubscribe
+    // when we get the current bookmarks
+    var subscription = getUser().listen(null);
+    subscription.onData((user) {
+      if (user != null) {
+        // We have the update user, update bookmarks now
+        _updateBookmarks(user, activityId, false);
+
+        // We can cancel the subscription to avoid multiple writes on Firebase
+        subscription.cancel();
+      }
+    });
   }
 
-  _updateBookmarks(DevFestUser user, String bookmark) {
-    var bookmarksArray = List<dynamic>.from(user.bookmarks);
+  removeBookmark(String activityId) {
+    // Create subscription reference, so we can unsubscribe
+    // when we get the current bookmarks
+    var subscription = getUser().listen(null);
+    subscription.onData((user) {
+      if (user != null) {
+        // We have the update user, update bookmarks now
+        _updateBookmarks(user, activityId, true);
 
-    if (bookmarksArray == null) {
+        // We can cancel the subscription to avoid multiple writes on Firebase
+        subscription.cancel();
+      }
+    });
+  }
+
+  _updateBookmarks(DevFestUser user, String bookmark, bool delete) {
+    // Current bookmarks will go there
+    var bookmarksArray;
+
+    if (user.bookmarks == null) {
+      // If user has no bookmarks, initialize the array
       bookmarksArray = new List<dynamic>();
+    } else {
+      // else get current bookmarks
+      // List<>.from: returns a NON-FIXED list instead of a fixed one
+      bookmarksArray = List<dynamic>.from(user.bookmarks);
     }
 
-    bookmarksArray.add(bookmark);
+    if (delete) {
+      // remove bookmark in the current array
+      bookmarksArray.removeWhere((item) => item == bookmark);
+    } else {
+      // add bookmark to the array
+      bookmarksArray.add(bookmark);
+    }
 
-    Firestore.instance
-        .collection("users")
-        .document(userId)
+    // Now that we have the updated bookmarks array we need to push it online
+    Firestore.instance.collection("users").document(userId)
+        // UpdateData will not touch other user proprieties like id and displayName
         .updateData({"bookmarks": bookmarksArray});
   }
 

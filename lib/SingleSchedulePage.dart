@@ -3,6 +3,7 @@ import 'package:devfest_levante/DevFestActivity.dart';
 import 'package:devfest_levante/DevFestSpeaker.dart';
 import 'package:devfest_levante/SpeakersRepository.dart';
 import 'package:devfest_levante/TalkPage.dart';
+import 'package:devfest_levante/UserRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
