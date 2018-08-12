@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
           // The lambda in the builder will be run each time we have updated data from Firebase
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             // Check if we're done downloading the user info
-            if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasData) {
               // Now we can save user data in a variable
               FirebaseUser user = snapshot.data;
 

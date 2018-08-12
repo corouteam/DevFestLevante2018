@@ -102,6 +102,8 @@ class SplashScreenWidget extends StatelessWidget {
     UserRepository repo = UserRepository(user.uid);
     var devFestUser = DevFestUser();
     devFestUser.userId = user.uid;
+    devFestUser.email = user.email;
+    devFestUser.displayName = user.displayName;
     await repo.createNewUser(devFestUser);
 
     Navigator.of(context).pushReplacement(
