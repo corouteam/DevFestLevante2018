@@ -99,11 +99,10 @@ class SplashScreenWidget extends StatelessWidget {
     );
 
     // Login done, create user in Firestore
-
-/*    UserRepository repo = UserRepository(user.uid);
+    UserRepository repo = UserRepository(user.uid);
     var devFestUser = DevFestUser();
     devFestUser.userId = user.uid;
-    await repo.createNewUser(devFestUser);*/
+    await repo.createNewUser(devFestUser);
 
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => HomePage()));
