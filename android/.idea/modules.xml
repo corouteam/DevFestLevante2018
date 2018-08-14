@@ -3,12 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/android.iml" filepath="$PROJECT_DIR$/android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$USER_HOME$/Apps/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.7.4/android/cloud_firestore.iml" filepath="$USER_HOME$/Apps/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.7.4/android/cloud_firestore.iml" />
-      <module fileurl="file://$USER_HOME$/Apps/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.5.15/android/firebase_auth.iml" filepath="$USER_HOME$/Apps/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.5.15/android/firebase_auth.iml" />
-      <module fileurl="file://$USER_HOME$/Apps/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.2.5/android/firebase_core.iml" filepath="$USER_HOME$/Apps/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.2.5/android/firebase_core.iml" />
-      <module fileurl="file://$USER_HOME$/Apps/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-1.0.4/android/firebase_messaging.iml" filepath="$USER_HOME$/Apps/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-1.0.4/android/firebase_messaging.iml" />
-      <module fileurl="file://$USER_HOME$/Apps/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in-3.0.4/android/google_sign_in.iml" filepath="$USER_HOME$/Apps/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in-3.0.4/android/google_sign_in.iml" />
     </modules>
   </component>
 </project>
