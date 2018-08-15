@@ -16,11 +16,7 @@ class TalkPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Image(
-                fit: BoxFit.fill,
-                image: AssetImage('assets/header.png'),
-                height: 150.0,
-              ),
+              TalkCoverWidget(talk),
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -83,4 +79,25 @@ class TalkPage extends StatelessWidget {
           ),
         ));
   }
+}
+
+class TalkCoverWidget extends StatelessWidget {
+  DevFestActivity activity;
+
+  TalkCoverWidget(this.activity);
+
+  @override
+  Widget build(BuildContext context) {
+    if (activity.cover != null) {
+      return Image(
+        fit: BoxFit.fitWidth,
+        image: NetworkImage(activity.cover),
+        height: 150.0,
+      );
+    } else {
+      return Container();
+    }
+  }
+
+
 }
