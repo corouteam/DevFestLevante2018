@@ -1,6 +1,7 @@
-import 'package:devfest_levante/InfoPage.dart';
-import 'package:devfest_levante/SchedulePage.dart';
-import 'package:devfest_levante/SplashScreenPage.dart';
+
+import 'package:devfest_levante_2018/ui/SplashScreenPage.dart';
+import 'package:devfest_levante_2018/ui/info/InfoPage.dart';
+import 'package:devfest_levante_2018/ui/schedule/SchedulePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';

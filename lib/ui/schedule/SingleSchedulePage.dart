@@ -1,9 +1,8 @@
-import 'package:devfest_levante/ActivitiesRepository.dart';
-import 'package:devfest_levante/DevFestActivity.dart';
-import 'package:devfest_levante/DevFestSpeaker.dart';
-import 'package:devfest_levante/SpeakersRepository.dart';
-import 'package:devfest_levante/TalkPage.dart';
-import 'package:devfest_levante/UserRepository.dart';
+import 'package:devfest_levante_2018/repository/ActivitiesRepository.dart';
+import 'package:devfest_levante_2018/model/DevFestActivity.dart';
+import 'package:devfest_levante_2018/model/DevFestSpeaker.dart';
+import 'package:devfest_levante_2018/repository/SpeakersRepository.dart';
+import 'package:devfest_levante_2018/ui/schedule/TalkPage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

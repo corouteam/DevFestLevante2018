@@ -1,4 +1,4 @@
-package com.example.devfestlevante;
+package com.github.twocoffeesoneteam.devfestlevante2018;
 
 import android.app.Activity;
 import android.graphics.Color;

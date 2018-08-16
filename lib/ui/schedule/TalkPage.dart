@@ -1,9 +1,9 @@
-import 'package:devfest_levante/DevFestActivity.dart';
-import 'package:devfest_levante/DevFestSpeaker.dart';
-import 'package:devfest_levante/DevFestUser.dart';
-import 'package:devfest_levante/SpeakersRepository.dart';
-import 'package:devfest_levante/UserRepository.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
+import 'package:devfest_levante_2018/model/DevFestActivity.dart';
+import 'package:devfest_levante_2018/model/DevFestSpeaker.dart';
+import 'package:devfest_levante_2018/model/DevFestUser.dart';
+import 'package:devfest_levante_2018/repository/SpeakersRepository.dart';
+import 'package:devfest_levante_2018/repository/UserRepository.dart';
 import 'package:flutter/material.dart';
 
 class TalkPage extends StatelessWidget {
@@ -20,7 +20,12 @@ class TalkPage extends StatelessWidget {
           stream: userRepo.getUser(),
           builder: (context, data) {
             DevFestUser devFestUser = data.data;
-            if (devFestUser.bookmarks.contains(talk.id)){
+            var bookmarks = devFestUser.bookmarks;
+
+            if (bookmarks == null) {
+              bookmarks = List<String>();
+            }
+            if (bookmarks.contains(talk.id)){
               return BookmarkWidget(userRepo, talk, devFestUser, true);
             } else {
               return BookmarkWidget(userRepo, talk, devFestUser, false);

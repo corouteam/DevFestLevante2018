@@ -1,6 +1,6 @@
-import 'package:devfest_levante/DevFestFaq.dart';
-import 'package:devfest_levante/DevFestTabTextTheme.dart';
-import 'package:devfest_levante/FaqRepository.dart';
+import 'package:devfest_levante_2018/model/DevFestFaq.dart';
+import 'package:devfest_levante_2018/repository/FaqRepository.dart';
+import 'package:devfest_levante_2018/utils/DevFestTabTextTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart';

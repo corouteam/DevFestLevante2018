@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:devfest_levante/DevFestUser.dart';
+import 'package:devfest_levante_2018/model/DevFestUser.dart';
 
 class UserRepository {
   final String userId;

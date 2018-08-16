@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:devfest_levante_2018/model/DevFestActivity.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:devfest_levante/DevFestActivity.dart';
 
 class ActivitiesRepository {
   static Stream<List<DevFestActivity>> getActivities() {

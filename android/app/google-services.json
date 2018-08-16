@@ -31,6 +31,113 @@
           }
         },
         {
+          "client_id": "792402634639-tklf22cih2iqirt9kid1f03r3m83jcku.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.devfestlevante",
+            "certificate_hash": "4f41d468cf8991d555d776ce1dac6becd8709524"
+          }
+        },
+        {
+          "client_id": "792402634639-a4mtaemsa7434s5lcq089ls9gs4co7hj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.devfestlevante",
+            "certificate_hash": "165c2773b9338eecf7260cccec5f146cffa03712"
+          }
+        },
+        {
+          "client_id": "792402634639-d0hleaj6fkdj9qq8rb36o59mpj4a3ni2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.devfestlevante",
+            "certificate_hash": "2bda332feaec133d08618a0f6cc0fe2da68e32b9"
+          }
+        },
+        {
+          "client_id": "792402634639-otr476vh4bboas35tn53b5urbirtkt6q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCh7k73iaLCii_8yP_hdO4cf-4sSGdBx2U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "792402634639-otr476vh4bboas35tn53b5urbirtkt6q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "792402634639-quuubtc5pd011g9r57i4i68c3j8egpfl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.devfestLevante"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792402634639:android:8c1d296441328bee",
+        "android_client_info": {
+          "package_name": "com.github.twocoffeesoneteam.devfestlevante2018"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "792402634639-i8tr4eratq12lu3jike70971967h1hc1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.github.twocoffeesoneteam.devfestlevante2018",
+            "certificate_hash": "165c2773b9338eecf7260cccec5f146cffa03712"
+          }
+        },
+        {
+          "client_id": "792402634639-pkkhig9dc3o973ci9rv7284r9oclt2ok.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.github.twocoffeesoneteam.devfestlevante2018",
+            "certificate_hash": "4f41d468cf8991d555d776ce1dac6becd8709524"
+          }
+        },
+        {
+          "client_id": "792402634639-2buln0u85a4hqmomr6nc8vb0ob21r0te.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.github.twocoffeesoneteam.devfestlevante2018",
+            "certificate_hash": "c45902a5c1629140e1a4b4beda6ab5b2fec5568a"
+          }
+        },
+        {
+          "client_id": "792402634639-jhca07dkt139jookcagna4s6ljpgvp88.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.github.twocoffeesoneteam.devfestlevante2018",
+            "certificate_hash": "e010d8fdc13c2bf26f33562a3c01295d067086cc"
+          }
+        },
+        {
+          "client_id": "792402634639-03kcdaudm2btl2gbc75h1sksatas2phe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.github.twocoffeesoneteam.devfestlevante2018",
+            "certificate_hash": "2bda332feaec133d08618a0f6cc0fe2da68e32b9"
+          }
+        },
+        {
           "client_id": "792402634639-otr476vh4bboas35tn53b5urbirtkt6q.apps.googleusercontent.com",
           "client_type": 3
         }

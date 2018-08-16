@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:devfest_levante/DevFestSpeaker.dart';
+import 'package:devfest_levante_2018/model/DevFestSpeaker.dart';
 
 class SpeakersRepository {
   static Stream<DevFestSpeaker> getSpeaker(String id) {

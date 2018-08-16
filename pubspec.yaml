@@ -1,5 +1,5 @@
-name: devfest_levante
-description: A new Flutter project.
+name: devfest_levante_2018
+description: Official app of DevFest Levante 2018.
 
 dependencies:
   flutter:
