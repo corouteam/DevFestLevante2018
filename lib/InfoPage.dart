@@ -3,21 +3,24 @@ import 'package:devfest_levante/DevFestTabTextTheme.dart';
 import 'package:devfest_levante/FaqRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_map/flutter_map.dart';
 
-class InfoPage extends StatelessWidget {
+
+import 'package:latlong/latlong.dart';class InfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 1,
+      length: 2,
       child: Column(
         children: <Widget>[
           TabBar(
-            isScrollable: true,
+            isScrollable: false,
             tabs: [
               Tab(child: DevFestTabTextTheme("FAQ")),
+              Tab(child: DevFestTabTextTheme("Map")),
             ],
           ),
-          Expanded(child: TabBarView(children: <Widget>[FaqPage()])),
+          Expanded(child: TabBarView(children: <Widget>[FaqPage(), MapPage()])),
         ],
       ),
     );
@@ -65,4 +68,35 @@ class FaqPage extends StatelessWidget {
       ],
     );
   }
+}
+
+class MapPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FlutterMap(
+      options: MapOptions(
+        center: LatLng(40.273107, 18.418159),
+        zoom: 13.0,
+      ),
+      layers: [
+        TileLayerOptions(
+            urlTemplate:
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            subdomains: ['a', 'b', 'c']),
+        MarkerLayerOptions(
+          markers: [
+            new Marker(
+              width: 80.0,
+              height: 80.0,
+              point: LatLng(40.273107, 18.418159),
+              builder: (ctx) => Container(
+                child: Icon(Icons.assistant_photo, color: Colors.deepOrange,),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
 }

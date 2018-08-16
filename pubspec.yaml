@@ -14,6 +14,7 @@ dependencies:
   firebase_auth: ^0.5.15      # new, Firebase Auth library
   firebase_messaging:          # new, Firebase Push Notification library
   flutter_statusbar_manager : ^1.0.0
+  flutter_map: ^0.0.1
 
 
 dev_dependencies:
