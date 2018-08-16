@@ -35,8 +35,8 @@ class ActivitiesRepository {
             document["cover"],
             document["day"],
             document["start"],
-            document["end"]));
-      } else {
+            document["end"], ""));
+      } else if(document["type"] == "talk"){
         // Build new talk/workshop
         activities.add(DevFestActivity(
             document["id"],
@@ -47,7 +47,20 @@ class ActivitiesRepository {
             document["day"],
             document["start"],
             document["end"],
-            document["speakers"]));
+            document["speakers"],
+            document["abstract"]));
+      }else{
+        activities.add(DevFestActivity(
+            document["id"],
+            document["type"],
+            document["title"],
+            document["desc"],
+            document["cover"],
+            document["day"],
+            document["start"],
+            document["end"],
+            document["speakers"],
+            document["abstract"]));
       }
     }
 

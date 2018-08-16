@@ -1,4 +1,6 @@
 import 'package:devfest_levante/DevFestActivity.dart';
+import 'package:devfest_levante/DevFestSpeaker.dart';
+import 'package:devfest_levante/SpeakersRepository.dart';
 import 'package:flutter/material.dart';
 
 class TalkPage extends StatelessWidget {
@@ -11,73 +13,16 @@ class TalkPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text("Detail"),
+          actions: <Widget>[
+            new IconButton(
+              icon: new Icon(Icons.favorite_border,
+                color: Colors.white,),
+              tooltip: 'Closes application',
+              onPressed: () => bookmark(),
+            ),
+          ],
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              TalkCoverWidget(talk),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Text(
-                      "Titolo fantastico",
-                      textScaleFactor: 1.8,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 8.0,
-                    ),
-                    Text(
-                      "Tue 2, 10:30 AM - 12:20 PM",
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    Text(
-                      "Main stage",
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    SizedBox(
-                      height: 28.0,
-                    ),
-                    Text(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras arcu erat, fermentum ac lacinia in, luctus at ante. Proin in magna porta, fermentum tortor a, porta orci. Aenean vehicula mattis euismod. Maecenas fermentum, tellus vel condimentum aliquet, massa tortor maximus orci, laoreet commodo risus nisi non dui. Nulla eu laoreet nisl. Nulla sollicitudin tincidunt velit eget blandit. Curabitur dignissim mauris eros, et facilisis nulla iaculis vel. Fusce dui sapien, vulputate ac dui et, blandit lacinia nulla. Cras at venenatis sem. Sed in metus id nulla lacinia ullamcorper. Fusce eget tortor quam. Aenean volutpat enim eget sapien tempus, vel efficitur nisl tincidunt. Aenean at feugiat velit. Quisque non porttitor arcu, vitae pellentesque dolor. Donec nisi mauris, venenatis sit amet pharetra at, placerat a arcu.",
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(color: Colors.black54),
-                    ),
-                    SizedBox(
-                      height: 32.0,
-                    ),
-                    Row(
-                      children: <Widget>[
-                        CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                "http://devfestlevante.eu/img/people/rigo.jpg"),
-                        minRadius: 35.0,),
-                        SizedBox(
-                          width: 16.0,
-                        ),
-                        Text("Nome speaker",
-                          textScaleFactor: 1.2,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 16.0,
-                    ),
-                    Text(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras arcu erat, fermentum ac lacinia in, luctus at ante. Proin in magna porta, fermentum tortor a, porta orci. Aenean vehicula mattis euismod.",
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(color: Colors.black54),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ));
+        body: SingleChildScrollView(child: ActivityChipWidget(talk)));
   }
 }
 
@@ -92,12 +37,181 @@ class TalkCoverWidget extends StatelessWidget {
       return Image(
         fit: BoxFit.fitWidth,
         image: NetworkImage(activity.cover),
-        height: 150.0,
+        height: 200.0,
       );
     } else {
       return Container();
     }
   }
+}
 
+abstract class GenericScheduleWidget extends StatelessWidget {
+  final DevFestActivity activity;
+  const GenericScheduleWidget(this.activity);
+}
+
+class ActivityChipWidget extends GenericScheduleWidget {
+  ActivityChipWidget(DevFestActivity activity) : super(activity);
+
+  @override
+  Widget build(BuildContext context) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            TalkCoverWidget(activity),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Text(
+                    activity.title,
+                    textScaleFactor: 2.0,
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: 8.0,
+                  ),
+                  Text(
+                    "Tue 2, 10:30 AM - 12:20 PM",
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    "Main stage",
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: 28.0,
+                  ),
+                 AbstractWidget(activity),
+                  DescriptionWidget(activity),
+                  SizedBox(
+                    height: 48.0,
+                  ),
+
+
+                  SpeakerChipWidget(activity),
+                ],
+              ),
+            ),
+          ],
+        );
+
+
+  }
+}
+
+class SpeakerChipWidget extends GenericScheduleWidget {
+  SpeakerChipWidget(DevFestActivity activity) : super(activity);
+
+  @override
+  Widget build(BuildContext context) {
+    // Only shows my avatar for now \o/
+    // Even if this is really cool, we need to join talk with speakers. Later.
+    // TODO query Firestore with speakerID
+
+    if (activity.type != "activity") {
+      return StreamBuilder(
+        stream: SpeakersRepository.getSpeaker(activity.speakers),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          DevFestSpeaker speaker = snapshot.data;
+          if (!snapshot.hasData) return Container();
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                " SPEAKER",
+                textScaleFactor: 1.5,
+                style: TextStyle(fontWeight: FontWeight.w500),
+              ),
+              SizedBox(
+                height: 24.0,
+              ),
+              Row(
+                children: <Widget>[
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(speaker.pic),
+                    minRadius: 35.0,
+                  ),
+                  SizedBox(
+                    width: 16.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        speaker.name,
+                        textScaleFactor: 1.5,
+                        style: TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      CommunityChip(speaker),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 16.0,
+              ),
+              Text(
+                speaker.bio,
+                textAlign: TextAlign.justify,
+              ),
+              SizedBox(
+                height: 32.0,
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      return Container();
+    }
+  }
+}
+
+
+class DescriptionWidget extends GenericScheduleWidget {
+  DescriptionWidget(DevFestActivity activity) : super(activity);
+
+  @override
+  Widget build(BuildContext context) {
+    return ((activity.desc != null) ? Text(activity.desc,
+    textAlign: TextAlign.justify,) : Container());
+  }
+}
+
+
+class AbstractWidget extends GenericScheduleWidget {
+  AbstractWidget(DevFestActivity activity) : super(activity);
+
+  @override
+  Widget build(BuildContext context) {
+    return ((activity.abstract != null) ? Text(activity.abstract, textAlign: TextAlign.justify,) : Container());
+  }
+}
+
+class CommunityChip extends StatelessWidget {
+  DevFestSpeaker speaker;
+  CommunityChip( this.speaker) ;
+
+  @override
+  Widget build(BuildContext context) {
+    return ((speaker.community != "") ? Chip(
+      label: Text(
+        speaker.community,
+        style: TextStyle(color: Colors.white),
+      ),
+      backgroundColor: Colors.orange,
+    ): Container());
+  }
+}
+
+
+bookmark(){
+  print("bookmark");
 
 }

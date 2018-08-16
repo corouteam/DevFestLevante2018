@@ -8,10 +8,11 @@ class DevFestActivity {
   DateTime end;
   String type;
   String speakers = "-1";
+  String abstract;
 
   DevFestActivity.generic(this.id, this.type, this.title, this.desc, this.cover, this.day,
-      this.start, this.end);
+      this.start, this.end, this.abstract);
 
   DevFestActivity(this.id, this.type, this.title, this.desc, this.cover, this.day,
-      this.start, this.end, this.speakers);
+      this.start, this.end, this.speakers, this.abstract);
 }
