@@ -5,6 +5,7 @@ import 'package:devfest_levante_2018/model/DevFestUser.dart';
 import 'package:devfest_levante_2018/repository/SpeakersRepository.dart';
 import 'package:devfest_levante_2018/repository/UserRepository.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TalkPage extends StatelessWidget {
   final DevFestActivity talk;
@@ -144,7 +145,7 @@ class ActivityChipWidget extends GenericScheduleWidget {
                 height: 8.0,
               ),
               Text(
-                "Tue 2, 10:30 AM - 12:20 PM",
+                formatTime(activity.start) + " - "+formatTimeEnd(activity.end),
                 style: TextStyle(fontWeight: FontWeight.w500),
               ),
               Text(
@@ -294,4 +295,16 @@ _bookmark(UserRepository userRepo, DevFestActivity talk, bool willAdd) {
   }
 
 
+}
+
+
+String formatTime(DateTime dateTime) {
+  final dateFormat = new   DateFormat.MMMEd("en_US").add_jm();
+  return dateFormat.format(dateTime);
+}
+
+
+String formatTimeEnd(DateTime dateTime) {
+  final dateFormat = new  DateFormat('HH:mm a');
+  return dateFormat.format(dateTime);
 }
