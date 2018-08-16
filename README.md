@@ -1,8 +1,3 @@
-# devfest_levante
+# DevFest Levante 2018 - Official App
 
-A new Flutter project.
-
-## Getting Started
-
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+The official app for [Dev Fest Levante 2018](http://devfestlevante.eu/) written in Flutter.
