@@ -15,6 +15,7 @@ dependencies:
   firebase_messaging:          # new, Firebase Push Notification library
   flutter_statusbar_manager : ^1.0.0
   flutter_map: ^0.0.1
+  url_launcher: ^3.0.3
 
 
 dev_dependencies:
