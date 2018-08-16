@@ -77,7 +77,7 @@ class ActivityChipWidget extends GenericScheduleWidget {
                     style: TextStyle(fontWeight: FontWeight.w500),
                   ),
                   Text(
-                    "Main stage",
+                    activity.location,
                     style: TextStyle(fontWeight: FontWeight.w500),
                   ),
                   SizedBox(

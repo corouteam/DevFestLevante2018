@@ -33,6 +33,7 @@ class ActivitiesRepository {
             document["title"],
             document["desc"],
             document["cover"],
+            document["location"],
             document["day"],
             document["start"],
             document["end"], ""));
@@ -44,6 +45,7 @@ class ActivitiesRepository {
             document["title"],
             document["desc"],
             document["cover"],
+            document["location"],
             document["day"],
             document["start"],
             document["end"],
@@ -56,6 +58,7 @@ class ActivitiesRepository {
             document["title"],
             document["desc"],
             document["cover"],
+            document["location"],
             document["day"],
             document["start"],
             document["end"],
