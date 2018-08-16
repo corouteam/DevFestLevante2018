@@ -8,12 +8,16 @@ import 'package:flutter/material.dart';
 
 class TalkPage extends StatelessWidget {
   final DevFestActivity talk;
-  var userRepo = UserRepository("gBJ4MyDV8JergIbjUGXky8wCTr62");
+  final String userUid;
 
-  TalkPage(this.talk);
+  TalkPage(this.talk, this.userUid);
+
+  UserRepository userRepo;
 
   @override
   Widget build(BuildContext context) {
+    userRepo = UserRepository(userUid);
+
     return Scaffold(
         body: SingleChildScrollView(child: ActivityChipWidget(talk)),
       floatingActionButton: StreamBuilder(

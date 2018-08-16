@@ -6,7 +6,7 @@ import 'package:devfest_levante_2018/model/DevFestUser.dart';
 class UserRepository {
   final String userId;
 
-  const UserRepository(this.userId);
+  UserRepository(this.userId);
 
   createNewUser(DevFestUser user) async {
     await Firestore.instance.collection("users").document(userId).setData({

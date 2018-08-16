@@ -3,6 +3,7 @@ import 'package:devfest_levante_2018/model/DevFestActivity.dart';
 import 'package:devfest_levante_2018/model/DevFestSpeaker.dart';
 import 'package:devfest_levante_2018/repository/SpeakersRepository.dart';
 import 'package:devfest_levante_2018/ui/schedule/TalkPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -108,8 +109,11 @@ class ActivityTile extends StatelessWidget {
   }
 
   _openTalkPage(BuildContext context, DevFestActivity talk) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => TalkPage(talk)));
+
+    FirebaseAuth.instance.currentUser().then((user) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => TalkPage(talk, user.uid)));
+    });
   }
 }
 
