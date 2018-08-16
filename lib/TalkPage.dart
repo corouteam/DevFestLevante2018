@@ -11,7 +11,10 @@ class TalkPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(child: ActivityChipWidget(talk)));
+        body: SingleChildScrollView(child: ActivityChipWidget(talk)),
+      bottomNavigationBar: BottomAppBar(),
+      floatingActionButton: FloatingActionButton(onPressed: null),
+    );
   }
 }
 
