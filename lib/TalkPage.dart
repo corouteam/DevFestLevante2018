@@ -1,10 +1,14 @@
 import 'package:devfest_levante/DevFestActivity.dart';
 import 'package:devfest_levante/DevFestSpeaker.dart';
+import 'package:devfest_levante/DevFestUser.dart';
 import 'package:devfest_levante/SpeakersRepository.dart';
+import 'package:devfest_levante/UserRepository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class TalkPage extends StatelessWidget {
   final DevFestActivity talk;
+  var userRepo = UserRepository("gBJ4MyDV8JergIbjUGXky8wCTr62");
 
   TalkPage(this.talk);
 
@@ -12,11 +16,62 @@ class TalkPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(child: ActivityChipWidget(talk)),
-      bottomNavigationBar: BottomAppBar(),
-      floatingActionButton: FloatingActionButton(onPressed: null),
+      floatingActionButton: StreamBuilder(
+          stream: userRepo.getUser(),
+          builder: (context, data) {
+            DevFestUser devFestUser = data.data;
+            if (devFestUser.bookmarks.contains(talk.id)){
+              return BookmarkWidget(userRepo, talk, devFestUser, true);
+            } else {
+              return BookmarkWidget(userRepo, talk, devFestUser, false);
+            }
+          }),
+
     );
   }
 }
+
+class BookmarkWidget extends StatefulWidget {
+  DevFestActivity talk;
+  UserRepository userRepo;
+  DevFestUser user;
+  bool isBookmark;
+
+  BookmarkWidget(this.userRepo, this.talk, this.user, this.isBookmark);
+
+  @override
+  _BookmarkWidgetState createState() => _BookmarkWidgetState(this.userRepo, this.talk, this.user, this.isBookmark);
+}
+
+class _BookmarkWidgetState extends State<BookmarkWidget> {
+  UserRepository userRepo;
+  DevFestActivity talk;
+  DevFestUser user;
+  bool isBookmark;
+
+  _BookmarkWidgetState(this.userRepo, this.talk, this.user, this.isBookmark);
+
+  @override
+  Widget build(BuildContext context) {
+    if (isBookmark) {
+      return FloatingActionButton(onPressed: () {
+        _bookmark(userRepo, talk, false);
+        setState(() {
+          isBookmark = false;
+        });
+        },
+      child: Icon(Icons.favorite),);
+    } else {
+      return FloatingActionButton(onPressed: () {
+        _bookmark(userRepo, talk, true);
+        setState(() {
+          isBookmark = true;
+        });
+        },
+        child: Icon(Icons.favorite_border),);    }
+  }
+}
+
 
 class TalkCoverWidget extends StatelessWidget {
   DevFestActivity activity;
@@ -164,7 +219,7 @@ class SpeakerChipWidget extends GenericScheduleWidget {
                 textAlign: TextAlign.justify,
               ),
               SizedBox(
-                height: 32.0,
+                height: 64.0,
               ),
             ],
           );
@@ -222,6 +277,12 @@ class CommunityChip extends StatelessWidget {
   }
 }
 
-bookmark() {
-  print("bookmark");
+_bookmark(UserRepository userRepo, DevFestActivity talk, bool willAdd) {
+  if (willAdd) {
+    userRepo.addBookmark(talk.id);
+  } else {
+    userRepo.removeBookmark(talk.id);
+  }
+
+
 }
