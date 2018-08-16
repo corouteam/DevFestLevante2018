@@ -1,6 +1,9 @@
 
+import 'package:devfest_levante_2018/model/DevFestUser.dart';
+import 'package:devfest_levante_2018/repository/UserRepository.dart';
 import 'package:devfest_levante_2018/ui/SplashScreenPage.dart';
 import 'package:devfest_levante_2018/ui/info/InfoPage.dart';
+import 'package:devfest_levante_2018/ui/schedule/FavouriteSchedulePage.dart';
 import 'package:devfest_levante_2018/ui/schedule/SchedulePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -54,6 +57,7 @@ class HomePageScaffold extends StatefulWidget {
 
 class HomeScaffoldState extends State<HomePageScaffold> {
   FirebaseUser user;
+  DevFestUser devFestUser;
   int tabPosition = 0;
   var currentPage;
   List<Widget> pages;
@@ -67,7 +71,7 @@ class HomeScaffoldState extends State<HomePageScaffold> {
 
     initActionBar();
 
-    pages = [SchedulePage(), Icon(Icons.favorite_border), InfoPage()];
+    pages = [SchedulePage(), FavouriteSchedulePage(user.uid), InfoPage()];
 
     currentPage = pages[0];
 
