@@ -11,17 +11,6 @@ class TalkPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Detail"),
-          actions: <Widget>[
-            new IconButton(
-              icon: new Icon(Icons.favorite_border,
-                color: Colors.white,),
-              tooltip: 'Closes application',
-              onPressed: () => bookmark(),
-            ),
-          ],
-        ),
         body: SingleChildScrollView(child: ActivityChipWidget(talk)));
   }
 }
@@ -35,7 +24,7 @@ class TalkCoverWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     if (activity.cover != null) {
       return Image(
-        fit: BoxFit.fitWidth,
+        fit: BoxFit.fill,
         image: NetworkImage(activity.cover),
         height: 200.0,
       );
@@ -55,49 +44,60 @@ class ActivityChipWidget extends GenericScheduleWidget {
 
   @override
   Widget build(BuildContext context) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Stack(
+          alignment: Alignment.topLeft,
           children: <Widget>[
             TalkCoverWidget(activity),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Text(
-                    activity.title,
-                    textScaleFactor: 2.0,
-                    style: TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                  SizedBox(
-                    height: 8.0,
-                  ),
-                  Text(
-                    "Tue 2, 10:30 AM - 12:20 PM",
-                    style: TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                  Text(
-                    activity.location,
-                    style: TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                  SizedBox(
-                    height: 28.0,
-                  ),
-                 AbstractWidget(activity),
-                  DescriptionWidget(activity),
-                  SizedBox(
-                    height: 48.0,
-                  ),
-
-
-                  SpeakerChipWidget(activity),
-                ],
+            SafeArea(
+                child: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white70,
               ),
-            ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+            )),
           ],
-        );
-
-
+        ),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Text(
+                activity.title,
+                textScaleFactor: 2.0,
+                style: TextStyle(fontWeight: FontWeight.w500),
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
+              Text(
+                "Tue 2, 10:30 AM - 12:20 PM",
+                style: TextStyle(fontWeight: FontWeight.w500),
+              ),
+              Text(
+                activity.location,
+                style: TextStyle(fontWeight: FontWeight.w500),
+              ),
+              SizedBox(
+                height: 28.0,
+              ),
+              AbstractWidget(activity),
+              DescriptionWidget(activity),
+              SizedBox(
+                height: 48.0,
+              ),
+              SpeakerChipWidget(activity),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 }
 
@@ -173,45 +173,52 @@ class SpeakerChipWidget extends GenericScheduleWidget {
   }
 }
 
-
 class DescriptionWidget extends GenericScheduleWidget {
   DescriptionWidget(DevFestActivity activity) : super(activity);
 
   @override
   Widget build(BuildContext context) {
-    return ((activity.desc != null) ? Text(activity.desc,
-    textAlign: TextAlign.justify,) : Container());
+    return ((activity.desc != null)
+        ? Text(
+            activity.desc,
+            textAlign: TextAlign.justify,
+          )
+        : Container());
   }
 }
-
 
 class AbstractWidget extends GenericScheduleWidget {
   AbstractWidget(DevFestActivity activity) : super(activity);
 
   @override
   Widget build(BuildContext context) {
-    return ((activity.abstract != null) ? Text(activity.abstract, textAlign: TextAlign.justify,) : Container());
+    return ((activity.abstract != null)
+        ? Text(
+            activity.abstract,
+            textAlign: TextAlign.justify,
+          )
+        : Container());
   }
 }
 
 class CommunityChip extends StatelessWidget {
   DevFestSpeaker speaker;
-  CommunityChip( this.speaker) ;
+  CommunityChip(this.speaker);
 
   @override
   Widget build(BuildContext context) {
-    return ((speaker.community != "") ? Chip(
-      label: Text(
-        speaker.community,
-        style: TextStyle(color: Colors.white),
-      ),
-      backgroundColor: Colors.orange,
-    ): Container());
+    return ((speaker.community != "")
+        ? Chip(
+            label: Text(
+              speaker.community,
+              style: TextStyle(color: Colors.white),
+            ),
+            backgroundColor: Colors.orange,
+          )
+        : Container());
   }
 }
 
-
-bookmark(){
+bookmark() {
   print("bookmark");
-
 }

@@ -13,6 +13,7 @@ class HomePage extends StatelessWidget {
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
 
     return new MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: new ThemeData(
             brightness: Brightness.light,
             primarySwatch: Colors.blue,
