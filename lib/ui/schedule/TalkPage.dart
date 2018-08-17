@@ -39,9 +39,7 @@ class TalkPage extends StatelessWidget {
           builder: (context, data) {
             DevFestUser devFestUser = data.data;
             var bookmarks;
-           if(devFestUser != null){
              bookmarks = devFestUser.bookmarks;
-            }
 
             if (bookmarks == null) {
               bookmarks = List<String>();
