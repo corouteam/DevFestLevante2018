@@ -1,102 +1,31 @@
 import 'package:devfest_levante_2018/model/DevFestFaq.dart';
 import 'package:devfest_levante_2018/repository/FaqRepository.dart';
+import 'package:devfest_levante_2018/ui/info/AboutPage.dart';
+import 'package:devfest_levante_2018/ui/info/FaqPage.dart';
+import 'package:devfest_levante_2018/ui/info/MapPage.dart';
 import 'package:devfest_levante_2018/utils/DevFestTabTextTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_map/flutter_map.dart';
 
 
 import 'package:latlong/latlong.dart';class InfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Column(
         children: <Widget>[
           TabBar(
             isScrollable: false,
             tabs: [
               Tab(child: DevFestTabTextTheme("FAQ")),
-              Tab(child: DevFestTabTextTheme("Map")),
+              Tab(child: DevFestTabTextTheme("About")),
+              Tab(child: DevFestTabTextTheme("Come raggiungerci")),
             ],
           ),
-          Expanded(child: TabBarView(children: <Widget>[FaqPage(), MapPage()])),
+          Expanded(child: TabBarView(children: <Widget>[FaqPage(), AboutPage(), MapPage()])),
         ],
       ),
     );
   }
-}
-
-class FaqPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder(
-        stream: FaqRepository.getFaqs(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData)
-            return Container(child: Center(child: Text("Loading...")));
-
-          return Container(
-            decoration: BoxDecoration(color: Colors.white),
-            child: new ListView.builder(
-              itemCount: snapshot.data.length,
-              padding: const EdgeInsets.only(top: 10.0),
-              itemBuilder: (context, index) =>
-                  _buildListItem(context, snapshot.data[index]),
-            ),
-          );
-        });
-  }
-
-  _buildListItem(BuildContext context, data) {
-    DevFestFaq faq = data;
-
-    return ExpansionTile(
-      title: Text(faq.title),
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(
-              left: 16.0, right: 16.0, top: 8.0, bottom: 16.0),
-          child: Align(
-            alignment: Alignment.topLeft,
-            child: Text(
-              faq.text,
-              textAlign: TextAlign.start,
-            ),
-          ),
-        )
-      ],
-    );
-  }
-}
-
-class MapPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return FlutterMap(
-      options: MapOptions(
-        center: LatLng(40.273107, 18.418159),
-        zoom: 13.0,
-      ),
-      layers: [
-        TileLayerOptions(
-            urlTemplate:
-            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-            subdomains: ['a', 'b', 'c']),
-        MarkerLayerOptions(
-          markers: [
-            new Marker(
-              width: 80.0,
-              height: 80.0,
-              point: LatLng(40.273107, 18.418159),
-              builder: (ctx) => Container(
-                child: Icon(Icons.assistant_photo, color: Colors.deepOrange,),
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
 }
