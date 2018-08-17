@@ -6,6 +6,8 @@ import 'package:devfest_levante_2018/repository/SpeakersRepository.dart';
 import 'package:devfest_levante_2018/repository/UserRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:share/share.dart';
+
 
 class TalkPage extends StatelessWidget {
   final DevFestActivity talk;
@@ -28,7 +30,7 @@ class TalkPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            IconButton(icon: Icon(Icons.share,), onPressed: () {},),
+            IconButton(icon: Icon(Icons.share,), onPressed: share),
           ],
         ),
       ),
@@ -36,7 +38,10 @@ class TalkPage extends StatelessWidget {
           stream: userRepo.getUser(),
           builder: (context, data) {
             DevFestUser devFestUser = data.data;
-            var bookmarks = devFestUser.bookmarks;
+            var bookmarks;
+           if(devFestUser != null){
+             bookmarks = devFestUser.bookmarks;
+            }
 
             if (bookmarks == null) {
               bookmarks = List<String>();
@@ -218,19 +223,23 @@ class SpeakerChipWidget extends GenericScheduleWidget {
                   SizedBox(
                     width: 16.0,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        speaker.name,
-                        textScaleFactor: 1.5,
-                        style: TextStyle(fontWeight: FontWeight.w500),
-                      ),
-                      SizedBox(
-                        height: 8.0,
-                      ),
-                      CommunityChip(speaker),
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          speaker.company != "" ? speaker.name+", "+speaker.company : speaker.name,
+                          textScaleFactor: 1.5,
+                          style: TextStyle(fontWeight: FontWeight.w500),
+
+                        ),
+
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                        CommunityChip(speaker),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -294,7 +303,7 @@ class CommunityChip extends StatelessWidget {
               speaker.community,
               style: TextStyle(color: Colors.white),
             ),
-            backgroundColor: Colors.orange,
+            backgroundColor: getCommunityColor(speaker.type),
           )
         : Container());
   }
@@ -320,4 +329,20 @@ String formatTime(DateTime dateTime) {
 String formatTimeEnd(DateTime dateTime) {
   final dateFormat = new  DateFormat('HH:mm a');
   return dateFormat.format(dateTime);
+}
+
+Color getCommunityColor(String type){
+  if(type == "GDG"){
+    return Colors.orange;
+  }else if(type == "GDE"){
+    return Colors.red;
+  }
+  else{
+    return Colors.deepPurpleAccent;
+  }
+}
+
+share(){
+  print("share");
+  Share.share('Test share');
 }
