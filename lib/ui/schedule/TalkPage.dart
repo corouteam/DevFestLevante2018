@@ -21,6 +21,17 @@ class TalkPage extends StatelessWidget {
 
     return Scaffold(
         body: SingleChildScrollView(child: ActivityChipWidget(talk)),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      bottomNavigationBar: BottomAppBar(
+        hasNotch: true,
+        child: new Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            IconButton(icon: Icon(Icons.share,), onPressed: () {},),
+          ],
+        ),
+      ),
       floatingActionButton: StreamBuilder(
           stream: userRepo.getUser(),
           builder: (context, data) {
@@ -64,7 +75,8 @@ class _BookmarkWidgetState extends State<BookmarkWidget> {
   @override
   Widget build(BuildContext context) {
     if (isBookmark) {
-      return FloatingActionButton(onPressed: () {
+      return FloatingActionButton(
+        onPressed: () {
         _bookmark(userRepo, talk, false);
         setState(() {
           isBookmark = false;
@@ -72,7 +84,8 @@ class _BookmarkWidgetState extends State<BookmarkWidget> {
         },
       child: Icon(Icons.favorite),);
     } else {
-      return FloatingActionButton(onPressed: () {
+      return FloatingActionButton(
+        onPressed: () {
         _bookmark(userRepo, talk, true);
         setState(() {
           isBookmark = true;
