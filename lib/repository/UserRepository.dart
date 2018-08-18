@@ -13,7 +13,8 @@ class UserRepository {
       "userId": user.userId,
       "email": user.email,
       "displayName": user.displayName,
-    });
+    }, merge: true);
+
   }
 
   addBookmark(String activityId) {
