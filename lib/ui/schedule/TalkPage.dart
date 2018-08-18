@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:share/share.dart';
 
-
+String speakerName = "";
 class TalkPage extends StatelessWidget {
   final DevFestActivity talk;
   final String userUid;
@@ -18,11 +18,20 @@ class TalkPage extends StatelessWidget {
   TalkPage(this.talk, this.userUid);
 
   UserRepository userRepo;
+  share(){
+
+      String speakerString = "";
+      if (speakerName != "") {
+        speakerString = "con $speakerName";
+      }
+      Share.share('${talk.title} $speakerString alla #DevFestLev18');
+
+  }
 
   @override
   Widget build(BuildContext context) {
     userRepo = UserRepository(userUid);
-
+    speakerName = "";
     return Scaffold(
         body: SingleChildScrollView(child: ActivityChipWidget(talk)),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
@@ -210,7 +219,7 @@ class SpeakerChipWidget extends GenericScheduleWidget {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           DevFestSpeaker speaker = snapshot.data;
           if (!snapshot.hasData) return Container();
-
+          speakerName = speaker.name;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -339,7 +348,3 @@ Color getCommunityColor(String type){
   }
 }
 
-share(){
-  print("share");
-  Share.share('Test share');
-}
