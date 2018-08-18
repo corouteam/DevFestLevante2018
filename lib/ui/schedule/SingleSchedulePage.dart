@@ -9,10 +9,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class SingleSchedulePage extends StatelessWidget {
+class SingleSchedulePage extends StatefulWidget{
+  SingleSchedulePageState createState() => SingleSchedulePageState(day);
   final int day;
-
   const SingleSchedulePage(this.day);
+
+}
+
+class SingleSchedulePageState extends State<SingleSchedulePage> {
+  int day;
+  SingleSchedulePageState(this.day);
+
 
   @override
   Widget build(BuildContext context) {
