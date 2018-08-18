@@ -119,7 +119,9 @@ class TalkCoverWidget extends StatelessWidget {
         image: NetworkImage(activity.cover),
       );
     } else {
-      return Container();
+      return Container(
+        height: 400.0,
+      );
     }
   }
 }
@@ -158,10 +160,15 @@ class ActivityChipWidget extends GenericScheduleWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Text(
-                activity.title,
-                textScaleFactor: 2.0,
-                style: TextStyle(fontWeight: FontWeight.w500),
+              Hero(
+                tag: "anim_activity_${activity.id}",
+                child: Material(
+                  child: Text(
+                    activity.title,
+                    textScaleFactor: 2.0,
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 8.0,
@@ -217,7 +224,7 @@ class SpeakerChipWidget extends GenericScheduleWidget {
               Row(
                 children: <Widget>[
                   Hero(
-                    tag: "speaker_avatar_${speaker.id}",
+                    tag: "anim_speaker_avatar_${speaker.id}",
                     child: CircleAvatar(
                       backgroundImage: NetworkImage(speaker.pic),
                       minRadius: 35.0,

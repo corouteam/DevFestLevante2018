@@ -163,7 +163,7 @@ class SpeakerChipWidget extends GenericScheduleWidget {
             backgroundColor: Colors.white,
             label: Text(speaker.name),
             avatar: Hero(
-                tag: "speaker_avatar_${speaker.id}",
+                tag: "anim_speaker_avatar_${speaker.id}",
                 child: CircleAvatar(backgroundImage: NetworkImage(speaker.pic))),
           );
         },
@@ -179,10 +179,15 @@ class TitleWidget extends GenericScheduleWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      activity.title,
-      textScaleFactor: 1.4,
-      style: TextStyle(fontWeight: FontWeight.bold),
+    return Hero(
+      tag: "anim_activity_${activity.id}",
+      child: Material(
+        child: Text(
+          activity.title,
+          textScaleFactor: 1.4,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
     );
   }
 }
