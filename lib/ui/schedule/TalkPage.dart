@@ -4,6 +4,7 @@ import 'package:devfest_levante_2018/model/DevFestSpeaker.dart';
 import 'package:devfest_levante_2018/model/DevFestUser.dart';
 import 'package:devfest_levante_2018/repository/SpeakersRepository.dart';
 import 'package:devfest_levante_2018/repository/UserRepository.dart';
+import 'package:devfest_levante_2018/utils/DateTimeHelper.dart';
 import 'package:devfest_levante_2018/utils/LoadingWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -166,7 +167,7 @@ class ActivityChipWidget extends GenericScheduleWidget {
                 height: 8.0,
               ),
               Text(
-                formatTime(activity.start) + " - "+formatTimeEnd(activity.end),
+                DateTimeHelper.formatTalkDateTimeStart(activity.start) + " - "+ DateTimeHelper.formatTalkTimeEnd(activity.end),
                 style: TextStyle(fontWeight: FontWeight.w500),
               ),
               Text(
@@ -195,10 +196,6 @@ class SpeakerChipWidget extends GenericScheduleWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Only shows my avatar for now \o/
-    // Even if this is really cool, we need to join talk with speakers. Later.
-    // TODO query Firestore with speakerID
-
     if (activity.type != "activity") {
       return StreamBuilder(
         stream: SpeakersRepository.getSpeaker(activity.speakers),
@@ -318,20 +315,6 @@ _bookmark(UserRepository userRepo, DevFestActivity talk, bool willAdd) {
   } else {
     userRepo.removeBookmark(talk.id);
   }
-
-
-}
-
-
-String formatTime(DateTime dateTime) {
-  final dateFormat = new   DateFormat.MMMEd("en_US").add_jm();
-  return dateFormat.format(dateTime);
-}
-
-
-String formatTimeEnd(DateTime dateTime) {
-  final dateFormat = new  DateFormat('HH:mm a');
-  return dateFormat.format(dateTime);
 }
 
 Color getCommunityColor(String type){

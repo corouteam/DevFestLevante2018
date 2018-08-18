@@ -3,6 +3,8 @@ import 'package:devfest_levante_2018/model/DevFestActivity.dart';
 import 'package:devfest_levante_2018/model/DevFestSpeaker.dart';
 import 'package:devfest_levante_2018/repository/SpeakersRepository.dart';
 import 'package:devfest_levante_2018/ui/schedule/TalkPage.dart';
+import 'package:devfest_levante_2018/utils/ColorUtils.dart';
+import 'package:devfest_levante_2018/utils/DateTimeHelper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -172,7 +174,7 @@ class StartTimeWidget extends GenericScheduleWidget {
 
   @override
   Widget build(BuildContext context) {
-    var color = hexToColor("#676767");
+    var color = ColorUtils.hexToColor("#676767");
 
     if (activity.type == "talk") {
       color = Colors.blueAccent;
@@ -180,7 +182,7 @@ class StartTimeWidget extends GenericScheduleWidget {
       color = Colors.deepOrangeAccent;
     }
 
-    return Text(formatTime(activity.start),
+    return Text(DateTimeHelper.formatTime(activity.start),
         textScaleFactor: 1.8,
         style: TextStyle(color: color, fontWeight: FontWeight.w300));
   }
@@ -202,7 +204,7 @@ class ActivityChipWidget extends GenericScheduleWidget {
             child: Text(
               "TALK",
               style: TextStyle(
-                  color: hexToColor("#676767"), fontWeight: FontWeight.w300),
+                  color: ColorUtils.hexToColor("#676767"), fontWeight: FontWeight.w300),
               textScaleFactor: 0.8,
             ),
           ),
@@ -220,7 +222,7 @@ class ActivityChipWidget extends GenericScheduleWidget {
             child: Text(
               "WORKSHOP",
               style: TextStyle(
-                  color: hexToColor("#676767"), fontWeight: FontWeight.w300),
+                  color: ColorUtils.hexToColor("#676767"), fontWeight: FontWeight.w300),
               textScaleFactor: 0.7,
             ),
           ),
@@ -235,14 +237,4 @@ class ActivityChipWidget extends GenericScheduleWidget {
 abstract class GenericScheduleWidget extends StatelessWidget {
   final DevFestActivity activity;
   const GenericScheduleWidget(this.activity);
-}
-
-String formatTime(DateTime dateTime) {
-  final dateFormat = new DateFormat('HH:mm');
-
-  return dateFormat.format(dateTime);
-}
-
-Color hexToColor(String code) {
-  return new Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
 }

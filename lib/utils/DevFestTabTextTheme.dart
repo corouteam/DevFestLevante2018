@@ -1,3 +1,4 @@
+import 'package:devfest_levante_2018/utils/ColorUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -10,11 +11,7 @@ class DevFestTabTextTheme extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(color: hexToColor("#676767")),
+      style: TextStyle(color: ColorUtils.hexToColor("#676767")),
     );
-  }
-
-  Color hexToColor(String code) {
-    return new Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
   }
 }
