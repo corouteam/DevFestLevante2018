@@ -216,9 +216,12 @@ class SpeakerChipWidget extends GenericScheduleWidget {
               ),
               Row(
                 children: <Widget>[
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(speaker.pic),
-                    minRadius: 35.0,
+                  Hero(
+                    tag: "speaker_avatar_${speaker.id}",
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(speaker.pic),
+                      minRadius: 35.0,
+                    ),
                   ),
                   SizedBox(
                     width: 16.0,

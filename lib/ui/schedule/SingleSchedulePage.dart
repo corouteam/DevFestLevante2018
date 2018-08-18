@@ -144,7 +144,9 @@ class SpeakerChipWidget extends GenericScheduleWidget {
           return Chip(
             backgroundColor: Colors.white,
             label: Text(speaker.name),
-            avatar: CircleAvatar(backgroundImage: NetworkImage(speaker.pic)),
+            avatar: Hero(
+                tag: "speaker_avatar_${speaker.id}",
+                child: CircleAvatar(backgroundImage: NetworkImage(speaker.pic))),
           );
         },
       );

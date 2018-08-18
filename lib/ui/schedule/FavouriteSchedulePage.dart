@@ -4,14 +4,12 @@ import 'package:devfest_levante_2018/model/DevFestActivity.dart';
 import 'package:devfest_levante_2018/model/DevFestSpeaker.dart';
 import 'package:devfest_levante_2018/repository/SpeakersRepository.dart';
 import 'package:devfest_levante_2018/repository/UserRepository.dart';
-import 'package:devfest_levante_2018/ui/schedule/SingleSchedulePage.dart';
 import 'package:devfest_levante_2018/ui/schedule/TalkPage.dart';
 import 'package:devfest_levante_2018/utils/ColorUtils.dart';
 import 'package:devfest_levante_2018/utils/DateTimeHelper.dart';
 import 'package:devfest_levante_2018/utils/LoadingWidget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 
 
@@ -164,7 +162,9 @@ class SpeakerChipWidget extends GenericScheduleWidget {
           return Chip(
             backgroundColor: Colors.white,
             label: Text(speaker.name),
-            avatar: CircleAvatar(backgroundImage: NetworkImage(speaker.pic)),
+            avatar: Hero(
+                tag: "speaker_avatar_${speaker.id}",
+                child: CircleAvatar(backgroundImage: NetworkImage(speaker.pic))),
           );
         },
       );

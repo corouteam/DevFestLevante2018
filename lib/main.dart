@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 
 void main() {
 
+  // Ignore deprecated tag, see issue: https://github.com/flutter/flutter/issues/13736
+  MaterialPageRoute.debugEnableFadingRoutes = true;
 
   SystemChrome
       .setPreferredOrientations([DeviceOrientation.portraitUp]).then((_) {
