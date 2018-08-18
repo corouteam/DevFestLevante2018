@@ -25,7 +25,7 @@ class AboutPage extends StatelessWidget {
               children: <Widget>[
                 Expanded(child: PersonWidget("The\nOpenSourcer", "http://devfestlevante.eu/img/people/paolo.jpg")),
                 Expanded(child: PersonWidget("The\nMacBook Slayer", "http://devfestlevante.eu/img/people/labellarte.jpg")),
-                Expanded(child: PersonWidget("The\n Android\nROM Chef", "http://devfestlevante.eu/img/people/lops.jpg")),
+                Expanded(child: PersonWidget("The\n GIT worst\nNightmare", "http://devfestlevante.eu/img/people/lops.jpg")),
               ],
             ),
           ),
