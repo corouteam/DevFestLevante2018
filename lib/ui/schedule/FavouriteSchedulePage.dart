@@ -5,6 +5,7 @@ import 'package:devfest_levante_2018/model/DevFestSpeaker.dart';
 import 'package:devfest_levante_2018/repository/SpeakersRepository.dart';
 import 'package:devfest_levante_2018/repository/UserRepository.dart';
 import 'package:devfest_levante_2018/ui/schedule/TalkPage.dart';
+import 'package:devfest_levante_2018/utils/LoadingWidget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -22,35 +23,34 @@ class FavouriteSchedulePage extends StatelessWidget {
     return StreamBuilder(
       stream: userRepo.getUser(),
       builder: (context, userData) {
-        DevFestUser user = userData.data;
+        if (userData.hasData) {
+          DevFestUser user = userData.data;
 
-        return StreamBuilder(
-            stream: ActivitiesRepository.getFavouriteActivities(user.bookmarks),
-            builder: (context, snapshot) {
+          return StreamBuilder(
+              stream: ActivitiesRepository.getFavouriteActivities(
+                  user.bookmarks),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) return LoadingWidget();
 
-              if (!snapshot.hasData) return Container(
-                child: Center(
-                  child: Text("Loading..."),
-                ),
-              );
+                if (snapshot.data.length == 0) return Container(
+                  child: Center(
+                    child: Text("Nessun preferito aggiunto! :)"),
+                  ),
+                );
 
-
-              if (snapshot.data.length == 0) return Container(
-                child: Center(
-                  child: Text("Nessun preferito aggiunto! :)"),
-                ),
-              );
-
-              return Container(
-                decoration: BoxDecoration(color: Colors.white),
-                child: new ListView.builder(
-                  itemCount: snapshot.data.length,
-                  padding: const EdgeInsets.only(top: 10.0),
-                  itemBuilder: (context, index) =>
-                      _buildListItem(context, snapshot.data[index]),
-                ),
-              );
-            });
+                return Container(
+                  decoration: BoxDecoration(color: Colors.white),
+                  child: new ListView.builder(
+                    itemCount: snapshot.data.length,
+                    padding: const EdgeInsets.only(top: 10.0),
+                    itemBuilder: (context, index) =>
+                        _buildListItem(context, snapshot.data[index]),
+                  ),
+                );
+              });
+        } else {
+          return LoadingWidget();
+        }
       },
     );
   }

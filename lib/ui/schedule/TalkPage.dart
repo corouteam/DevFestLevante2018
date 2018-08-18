@@ -4,6 +4,7 @@ import 'package:devfest_levante_2018/model/DevFestSpeaker.dart';
 import 'package:devfest_levante_2018/model/DevFestUser.dart';
 import 'package:devfest_levante_2018/repository/SpeakersRepository.dart';
 import 'package:devfest_levante_2018/repository/UserRepository.dart';
+import 'package:devfest_levante_2018/utils/LoadingWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:share/share.dart';
@@ -37,18 +38,22 @@ class TalkPage extends StatelessWidget {
       floatingActionButton: StreamBuilder(
           stream: userRepo.getUser(),
           builder: (context, data) {
-            DevFestUser devFestUser = data.data;
-            var bookmarks;
-             bookmarks = devFestUser.bookmarks;
+            if (data.hasData) {
+              DevFestUser devFestUser = data.data;
+              var bookmarks;
+              bookmarks = devFestUser.bookmarks;
 
-            if (bookmarks == null) {
-              bookmarks = List<String>();
-            }
+              if (bookmarks == null) {
+                bookmarks = List<String>();
+              }
 
-            if (bookmarks.contains(talk.id)){
-              return BookmarkWidget(userRepo, talk, devFestUser, true);
+              if (bookmarks.contains(talk.id)) {
+                return BookmarkWidget(userRepo, talk, devFestUser, true);
+              } else {
+                return BookmarkWidget(userRepo, talk, devFestUser, false);
+              }
             } else {
-              return BookmarkWidget(userRepo, talk, devFestUser, false);
+              return LoadingWidget();
             }
           }),
 
