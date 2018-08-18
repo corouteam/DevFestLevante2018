@@ -19,6 +19,8 @@ dependencies:
   url_launcher: ^3.0.3
   share: ^0.5.2
   flutter_local_notifications:
+  android_alarm_manager: ^0.2.0
+
 
 
 
