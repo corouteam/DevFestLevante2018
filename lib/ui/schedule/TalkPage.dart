@@ -163,6 +163,7 @@ class ActivityChipWidget extends GenericScheduleWidget {
               Hero(
                 tag: "anim_activity_${activity.id}",
                 child: Material(
+                  color: Colors.transparent,
                   child: Text(
                     activity.title,
                     textScaleFactor: 2.0,

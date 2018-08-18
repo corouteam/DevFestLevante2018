@@ -164,6 +164,7 @@ class TitleWidget extends GenericScheduleWidget {
     return Hero(
       tag: "anim_activity_${activity.id}",
       child: Material(
+        color: Colors.transparent,
         child: Text(
           activity.title,
           textScaleFactor: 1.4,
