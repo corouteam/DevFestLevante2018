@@ -208,5 +208,10 @@ cmake-build-*/
 # Sonarlint plugin
 .idea/sonarlint
 
+#Firebase functions
+functions/node_modules
+.vscode
+
+
 
 # End of https://www.gitignore.io/api/flutter,intellij,androidstudio
