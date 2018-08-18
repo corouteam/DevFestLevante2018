@@ -179,12 +179,15 @@ class HomeScaffoldState extends State<HomePageScaffold> {
                       );
                     });
               },
-              child: Container(
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: new NetworkImage(user.photoUrl)))),
+              child: Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Container(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: new NetworkImage(user.photoUrl)))),
+              ),
             ),
           ),
           title: Text(

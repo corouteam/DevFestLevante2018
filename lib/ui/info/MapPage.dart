@@ -10,6 +10,33 @@ class MapPage extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.all(8.0),
+          child: GestureDetector(
+            onTap: () => UrlHelper.launchURL("https://www.google.it/maps/place/Village+Camping+Sentinella/@40.273107,18.4159703,17z/data=!3m1!4b1!4m7!3m6!1s0x134437f998eb0623:0x59976d012b4b91d0!5m1!1s2018-09-02!8m2!3d40.273107!4d18.418159"),
+            child: Card(
+              color: Colors.blueAccent,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text("Village Camping Sentinella", style: TextStyle(color: Colors.white), textScaleFactor: 1.5,),
+                  subtitle: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text("Via Degli Eucaliptus, Torre Dell'Orso", style: TextStyle(color: Colors.white),),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 24.0),
+                        child: Text("TAP TO OPEN IN MAPS", style: TextStyle(color: Colors.white),),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Card(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -72,19 +99,6 @@ class MapPage extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Card(
-            color: Colors.blueAccent,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                title: Text("Village Camping Sentinella", style: TextStyle(color: Colors.white),),
-                subtitle: Text("Via Degli Eucaliptus, Torre Dell'Orso", style: TextStyle(color: Colors.white),),
               ),
             ),
           ),
