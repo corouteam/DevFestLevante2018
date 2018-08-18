@@ -17,6 +17,12 @@ class UserRepository {
 
   }
 
+  addFcmToken(DevFestUser user) async {
+    await Firestore.instance.collection("users").document(userId).setData({
+      "notificationToken": user.notificationToken,
+    }, merge: true);
+  }
+
   addBookmark(String activityId) {
     // Create subscription reference, so we can unsubscribe
     // when we get the current bookmarks

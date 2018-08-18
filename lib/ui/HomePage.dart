@@ -91,8 +91,11 @@ class HomeScaffoldState extends State<HomePageScaffold> {
     firebaseMessaging.onIosSettingsRegistered.listen((IosNotificationSettings) {
       print('IOS Settings Registed');
     });
-    firebaseMessaging.getToken().then((token) {
-      getToken(token);
+    firebaseMessaging.getToken().then((token) async {
+      UserRepository repo = UserRepository(user.uid);
+      var devFestUser = DevFestUser();
+      devFestUser.notificationToken = token;
+      await repo.addFcmToken(devFestUser);
     });
     flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
     var androidLocalNotifications = new AndroidInitializationSettings('mipmap/ic_launcher');
@@ -100,14 +103,6 @@ class HomeScaffoldState extends State<HomePageScaffold> {
     var initSettings = new InitializationSettings(androidLocalNotifications, iOSLocalNotifications);
     flutterLocalNotificationsPlugin.initialize(initSettings);
 
-  }
-
-
-  //TODO: send token to firebase
-
-  getToken(String token) {
-    print("TOKEN   " + token);
-    setState(() {});
   }
 
   @override
