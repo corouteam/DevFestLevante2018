@@ -1,4 +1,6 @@
 
+import 'dart:async';
+
 import 'package:devfest_levante_2018/model/DevFestUser.dart';
 import 'package:devfest_levante_2018/repository/UserRepository.dart';
 import 'package:devfest_levante_2018/ui/SplashScreenPage.dart';
@@ -94,8 +96,12 @@ class HomeScaffoldState extends State<HomePageScaffold> {
     });
     flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
     var androidLocalNotifications = new AndroidInitializationSettings('mipmap/ic_launcher');
-    var iOSLocalNotifications = new
+    var iOSLocalNotifications = new IOSInitializationSettings();
+    var initSettings = new InitializationSettings(androidLocalNotifications, iOSLocalNotifications);
+    flutterLocalNotificationsPlugin.initialize(initSettings);
+
   }
+
 
   //TODO: send token to firebase
 
