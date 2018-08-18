@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>792402634639-quuubtc5pd011g9r57i4i68c3j8egpfl.apps.googleusercontent.com</string>
+	<string>792402634639-vif7q24onl2fdk38h727m8bj6j3lk2kq.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.792402634639-quuubtc5pd011g9r57i4i68c3j8egpfl</string>
+	<string>com.googleusercontent.apps.792402634639-vif7q24onl2fdk38h727m8bj6j3lk2kq</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCu5Ne-QPn2yfGq5xNhpGLHckH4koEDuok</string>
 	<key>GCM_SENDER_ID</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:792402634639:ios:7503c869cbb8d607</string>
+	<string>1:792402634639:ios:8c1d296441328bee</string>
 	<key>DATABASE_URL</key>
 	<string>https://devfesttest-f5c73.firebaseio.com</string>
 </dict>
