@@ -8,7 +8,9 @@ class DateTimeHelper {
   }
 
   static String formatSimpleDate(DateTime dateTime) {
-    final dateFormat = DateFormat('M/d');
+    final dateFormat = DateFormat('EEE d');
+
+    return dateFormat.format(dateTime);
   }
 
   static String formatTalkDateTimeStart(DateTime dateTime) {

@@ -109,7 +109,7 @@ class ActivityTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                StartTimeWidget(activity),
+                DateTimeWidget(activity),
                 ActivityChipWidget(activity),
               ],
             ),
@@ -194,8 +194,8 @@ class DescriptionWidget extends GenericScheduleWidget {
   }
 }
 
-class StartTimeWidget extends GenericScheduleWidget {
-  StartTimeWidget(DevFestActivity activity) : super(activity);
+class DateTimeWidget extends GenericScheduleWidget {
+  DateTimeWidget(DevFestActivity activity) : super(activity);
 
   @override
   Widget build(BuildContext context) {
@@ -207,9 +207,19 @@ class StartTimeWidget extends GenericScheduleWidget {
       color = Colors.deepOrangeAccent;
     }
 
-    return Text(DateTimeHelper.formatTime(activity.start),
-        textScaleFactor: 1.8,
-        style: TextStyle(color: color, fontWeight: FontWeight.w300));
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Text(DateTimeHelper.formatSimpleDate(activity.start),
+            textScaleFactor: 1.2,
+            style: TextStyle(color: color, fontWeight: FontWeight.w300)),
+        Text(DateTimeHelper.formatTime(activity.start),
+            textScaleFactor: 1.8,
+            style: TextStyle(color: color, fontWeight: FontWeight.w300)),
+      ],
+    );
   }
 }
 
