@@ -10,6 +10,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_statusbar_manager/flutter_statusbar_manager.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
 
 class HomePage extends StatelessWidget {
   @override
@@ -62,7 +64,7 @@ class HomeScaffoldState extends State<HomePageScaffold> {
   var currentPage;
   List<Widget> pages;
   FirebaseMessaging firebaseMessaging = new FirebaseMessaging();
-
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
   HomeScaffoldState(this.user);
 
   @override
@@ -90,9 +92,12 @@ class HomeScaffoldState extends State<HomePageScaffold> {
     firebaseMessaging.getToken().then((token) {
       getToken(token);
     });
+    flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
+    var androidLocalNotifications = new AndroidInitializationSettings('mipmap/ic_launcher');
+    var iOSLocalNotifications = new
   }
 
-  // Paolo qui
+  //TODO: send token to firebase
 
   getToken(String token) {
     print("TOKEN   " + token);
