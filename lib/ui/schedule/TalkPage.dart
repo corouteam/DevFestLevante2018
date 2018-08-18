@@ -44,6 +44,7 @@ class TalkPage extends StatelessWidget {
             if (bookmarks == null) {
               bookmarks = List<String>();
             }
+
             if (bookmarks.contains(talk.id)){
               return BookmarkWidget(userRepo, talk, devFestUser, true);
             } else {
@@ -108,9 +109,8 @@ class TalkCoverWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     if (activity.cover != null) {
       return Image(
-        fit: BoxFit.fill,
+        fit: BoxFit.fitWidth,
         image: NetworkImage(activity.cover),
-        height: 200.0,
       );
     } else {
       return Container();
