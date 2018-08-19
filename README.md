@@ -2,7 +2,7 @@
 
 The official app for [Dev Fest Levante 2018](http://devfestlevante.eu/) written in **Flutter**.
 
-<a href="https://play.google.com/store/apps/details?id=com.amqtech.opensource.appintroexample&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-AC-global-none-all-co-pr-py-PartBadges-Oct1515-1"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge-border.png" width="300" /></a>
+<a href="update_this" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge-border.png" width="300" /></a>
 
 ## Structure
 The app is divided in 4 main sections:
