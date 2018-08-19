@@ -123,13 +123,14 @@ class TalkCoverWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (activity.cover != null) {
+      return FadeInImage.assetNetwork(
+          fit: BoxFit.fitWidth,
+          placeholder: 'assets/talk_generic.jpg',
+          image: activity.cover);
+    } else {
       return Image(
         fit: BoxFit.fitWidth,
-        image: NetworkImage(activity.cover),
-      );
-    } else {
-      return Container(
-        height: 400.0,
+        image: AssetImage('assets/talk_generic.jpg'),
       );
     }
   }
