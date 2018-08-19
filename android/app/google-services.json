@@ -154,6 +154,14 @@
           }
         },
         {
+          "client_id": "792402634639-o8u7sken3878sfgdlef71ruh1656m20t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.github.twocoffeesoneteam.devfestlevante2018",
+            "certificate_hash": "9521853ac8554304ba13bea825cfcb716b53e6f0"
+          }
+        },
+        {
           "client_id": "792402634639-otr476vh4bboas35tn53b5urbirtkt6q.apps.googleusercontent.com",
           "client_type": 3
         }
