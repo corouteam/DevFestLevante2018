@@ -55,6 +55,14 @@
           }
         },
         {
+          "client_id": "792402634639-8t5rnc2shij91cfd0n1hd4jf3r3aogth.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.devfestlevante",
+            "certificate_hash": "1688d954e8a4cda8e2d6441225f985fef7306f6d"
+          }
+        },
+        {
           "client_id": "792402634639-otr476vh4bboas35tn53b5urbirtkt6q.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -76,10 +84,10 @@
               "client_type": 3
             },
             {
-              "client_id": "792402634639-quuubtc5pd011g9r57i4i68c3j8egpfl.apps.googleusercontent.com",
+              "client_id": "792402634639-vif7q24onl2fdk38h727m8bj6j3lk2kq.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.devfestLevante"
+                "bundle_id": "com.github.twocoffeesoneteam.devfestlevante2018"
               }
             }
           ]
@@ -138,6 +146,14 @@
           }
         },
         {
+          "client_id": "792402634639-shli15sldjsqvnmigp8vvm8ttsp6p2o2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.github.twocoffeesoneteam.devfestlevante2018",
+            "certificate_hash": "1688d954e8a4cda8e2d6441225f985fef7306f6d"
+          }
+        },
+        {
           "client_id": "792402634639-otr476vh4bboas35tn53b5urbirtkt6q.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -159,10 +175,10 @@
               "client_type": 3
             },
             {
-              "client_id": "792402634639-quuubtc5pd011g9r57i4i68c3j8egpfl.apps.googleusercontent.com",
+              "client_id": "792402634639-vif7q24onl2fdk38h727m8bj6j3lk2kq.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.devfestLevante"
+                "bundle_id": "com.github.twocoffeesoneteam.devfestlevante2018"
               }
             }
           ]
