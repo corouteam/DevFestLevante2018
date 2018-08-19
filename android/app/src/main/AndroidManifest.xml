@@ -30,6 +30,7 @@
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
+            android:label="DevFest Levante 2018"
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
             android:hardwareAccelerated="true"

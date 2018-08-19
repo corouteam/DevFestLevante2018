@@ -42,6 +42,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'DevFest Levante 2018',
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: SplashScreenWidget(),

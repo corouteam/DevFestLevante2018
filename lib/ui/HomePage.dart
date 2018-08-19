@@ -21,6 +21,7 @@ class HomePage extends StatelessWidget {
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
 
     return new MaterialApp(
+        title: 'DevFest Levante 2018',
         debugShowCheckedModeBanner: false,
         theme: new ThemeData(
             brightness: Brightness.light,
