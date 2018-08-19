@@ -74,6 +74,7 @@ class SplashScreenWidget extends StatelessWidget {
           ),
           RaisedButton(
               color: Colors.blueAccent,
+              shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
               textColor: Colors.white,
               onPressed: () {
                 _handleSignIn(context);
