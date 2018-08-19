@@ -26,7 +26,7 @@ class MapPage extends StatelessWidget {
                       Text("Via Degli Eucaliptus, Torre Dell'Orso", style: TextStyle(color: Colors.white),),
                       Padding(
                         padding: const EdgeInsets.only(top: 24.0),
-                        child: Text("TAP TO OPEN IN MAPS", style: TextStyle(color: Colors.white),),
+                        child: Text("APRI IN MAPS", style: TextStyle(color: Colors.white),),
                       ),
                     ],
                   ),

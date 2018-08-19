@@ -79,7 +79,7 @@ class SplashScreenWidget extends StatelessWidget {
               onPressed: () {
                 _handleSignIn(context);
               },
-              child: Text("Login with Google")),
+              child: Text("Login con Google")),
         ],
       ),
     );
