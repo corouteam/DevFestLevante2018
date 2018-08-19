@@ -23,6 +23,10 @@
         <service
             android:name="io.flutter.plugins.androidalarmmanager.AlarmService"
             android:exported="false"/>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_stat_ic_notification" />
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
