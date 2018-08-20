@@ -21,6 +21,7 @@ class HomePage extends StatelessWidget {
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
 
     return new MaterialApp(
+        title: 'DevFest Levante 2018',
         debugShowCheckedModeBanner: false,
         theme: new ThemeData(
             brightness: Brightness.light,
@@ -43,7 +44,7 @@ class HomePage extends StatelessWidget {
             } else {
               // Firebase has not returned data yet. Show loading screen
               // TODO: Maybe replace this with a loading dialog
-              return Scaffold(body: Center(child: Text('Loading...')));
+              return Scaffold(body: Center(child: Text('Caricamento...')));
             }
           },
         ));
@@ -119,13 +120,13 @@ class HomeScaffoldState extends State<HomePageScaffold> {
           BottomNavigationBarItem(
               icon: Icon(Icons.schedule),
               title: Text(
-                "Schedule",
+                "Programma",
                 style: TextStyle(fontWeight: FontWeight.bold),
               )),
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite),
               title: Text(
-                "Favourites",
+                "Preferiti",
                 style: TextStyle(fontWeight: FontWeight.bold),
               )),
           BottomNavigationBarItem(
@@ -151,7 +152,7 @@ class HomeScaffoldState extends State<HomePageScaffold> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text("Sign out?"),
+                        title: Text("Log out?"),
                         content: Text(
                             "Tutte le sesioni salvate e le preferenze rimarranno comunque sincronizzate con il tuo account."),
                         actions: <Widget>[
@@ -168,7 +169,7 @@ class HomeScaffoldState extends State<HomePageScaffold> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: RaisedButton(
-                              child: Text("Sign out"),
+                              child: Text("Log out"),
                               color: Colors.blueAccent,
                               textColor: Colors.white,
                               onPressed: () {

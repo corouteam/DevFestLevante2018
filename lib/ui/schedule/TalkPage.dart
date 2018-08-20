@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:share/share.dart';
 
-
+String speakerName = "";
 class TalkPage extends StatelessWidget {
   final DevFestActivity talk;
   final String userUid;
@@ -18,11 +18,20 @@ class TalkPage extends StatelessWidget {
   TalkPage(this.talk, this.userUid);
 
   UserRepository userRepo;
+  share(){
+
+      String speakerString = "";
+      if (speakerName != "") {
+        speakerString = "con $speakerName";
+      }
+      Share.share('${talk.title} $speakerString alla #DevFestLev18');
+
+  }
 
   @override
   Widget build(BuildContext context) {
     userRepo = UserRepository(userUid);
-
+    speakerName = "";
     return Scaffold(
         body: SingleChildScrollView(child: ActivityChipWidget(talk)),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
@@ -114,13 +123,14 @@ class TalkCoverWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (activity.cover != null) {
+      return FadeInImage.assetNetwork(
+          fit: BoxFit.fitWidth,
+          placeholder: 'assets/talk_generic.jpg',
+          image: activity.cover);
+    } else {
       return Image(
         fit: BoxFit.fitWidth,
-        image: NetworkImage(activity.cover),
-      );
-    } else {
-      return Container(
-        height: 400.0,
+        image: AssetImage('assets/talk_generic.jpg'),
       );
     }
   }
@@ -210,7 +220,7 @@ class SpeakerChipWidget extends GenericScheduleWidget {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           DevFestSpeaker speaker = snapshot.data;
           if (!snapshot.hasData) return Container();
-
+          speakerName = speaker.name;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -225,7 +235,7 @@ class SpeakerChipWidget extends GenericScheduleWidget {
               Row(
                 children: <Widget>[
                   Hero(
-                    tag: "anim_speaker_avatar_${speaker.id}",
+                    tag: "anim_speaker_avatar_${activity.id}",
                     child: CircleAvatar(
                       backgroundImage: NetworkImage(speaker.pic),
                       minRadius: 35.0,
@@ -339,7 +349,3 @@ Color getCommunityColor(String type){
   }
 }
 
-share(){
-  print("share");
-  Share.share('Test share');
-}
