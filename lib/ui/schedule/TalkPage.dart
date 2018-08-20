@@ -36,7 +36,6 @@ class TalkPage extends StatelessWidget {
         body: SingleChildScrollView(child: ActivityChipWidget(talk)),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       bottomNavigationBar: BottomAppBar(
-        hasNotch: true,
         child: new Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
