@@ -163,7 +163,7 @@ class SpeakerChipWidget extends GenericScheduleWidget {
             backgroundColor: Colors.white,
             label: Text(speaker.name),
             avatar: Hero(
-                tag: "anim_speaker_avatar_${speaker.id}",
+                tag: "anim_speaker_avatar_${activity.id}",
                 child: CircleAvatar(backgroundImage: NetworkImage(speaker.pic))),
           );
         },

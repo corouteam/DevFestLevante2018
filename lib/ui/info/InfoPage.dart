@@ -20,7 +20,7 @@ import 'package:latlong/latlong.dart';class InfoPage extends StatelessWidget {
             tabs: [
               Tab(child: DevFestTabTextTheme("FAQ")),
               Tab(child: DevFestTabTextTheme("About")),
-              Tab(child: DevFestTabTextTheme("Travel")),
+              Tab(child: DevFestTabTextTheme("Viaggio")),
             ],
           ),
           Expanded(child: TabBarView(children: <Widget>[FaqPage(), AboutPage(), MapPage()])),

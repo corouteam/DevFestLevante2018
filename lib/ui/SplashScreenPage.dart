@@ -42,6 +42,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'DevFest Levante 2018',
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: SplashScreenWidget(),
@@ -74,11 +75,12 @@ class SplashScreenWidget extends StatelessWidget {
           ),
           RaisedButton(
               color: Colors.blueAccent,
+              shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
               textColor: Colors.white,
               onPressed: () {
                 _handleSignIn(context);
               },
-              child: Text("Login with Google")),
+              child: Text("Login con Google")),
         ],
       ),
     );
