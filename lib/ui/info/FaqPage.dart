@@ -91,7 +91,7 @@ class TournamentCard extends StatelessWidget{
                       Padding(
                         padding: const EdgeInsets.only(left: 16.0),
                         child: InkResponse(
-                          onTap: () => UrlHelper.launchURL("https://itunes.apple.com/it/app/enjore/id778026431?mt=8"),
+                          onTap: () => UrlHelper.launchURL("https://itunes.apple.com/it/app/enjore/id778026431"),
                           child: Text("iOS", style: TextStyle(color: Colors.white)),),
                       ),
                     ],
