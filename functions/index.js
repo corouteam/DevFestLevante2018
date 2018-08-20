@@ -1,23 +1,23 @@
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-
+let functions = require('firebase-functions');
+let admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
 
-exports.updateBookmarks = functions.firestore
-    .document('users/{bookmarks}')
-    .onUpdate((change, context) => {
-        const payload = {
-            notification:{
-                title : "Aggiunto!",
-                body : "Verrai notificato in prossimità dell'evento",
-                badge : '1',
-                sound : 'default'
-            }
-        }
-        console.log('Aggiornatooo');
+// exports.banana = functions.firestore
+//     .document('users/{userId}')
+//     .onWrite((change, context) => {
+//         console.log(`new create event for document ID: ${context.params.userId.notificationToken}`);
+//         var token = context.params.notificationToken;
 
-        functions.firestore.document('users/{notificationsToken}').
-        const token = Object.keys(allToken.val())
-        admin.messaging().sendToDevice(token,payload)
-    });
+//         const payload = {
+//             notification: {
+//                 title:"Hai aggiunto un preferito!",
+//                 body: "Figo!",
+//                 sound: "default"
+//             },
+//         };
+
+//         return admin.messaging().sendToDevice(token, payload)
+
+
+//     });
