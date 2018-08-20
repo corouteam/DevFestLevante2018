@@ -1,6 +1,7 @@
 import 'package:devfest_levante_2018/model/DevFestFaq.dart';
 import 'package:devfest_levante_2018/repository/FaqRepository.dart';
 import 'package:devfest_levante_2018/utils/UrlHelper.dart';
+import 'package:devfest_levante_2018/utils/LoadingWidget.dart';
 import 'package:flutter/material.dart';
 
 class FaqPage extends StatelessWidget {
@@ -10,7 +11,7 @@ class FaqPage extends StatelessWidget {
         stream: FaqRepository.getFaqs(),
         builder: (context, snapshot) {
           if (!snapshot.hasData)
-            return Container(child: Center(child: Text("Loading...")));
+            return LoadingWidget();
 
           return Container(
             decoration: BoxDecoration(color: Colors.white),
